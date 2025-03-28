@@ -22,7 +22,7 @@ function bestPairs = bruteForce(numPoints, xRange, yRange)
     x = rand(1, numPoints) * xRange;
     y = rand(1, numPoints) * yRange;
     points = [x; y]';
-    disp('Random Points / Devices:');
+    disp('Random Points');
     disp(points);
     
     %make graph with points
@@ -30,7 +30,7 @@ function bestPairs = bruteForce(numPoints, xRange, yRange)
     scatter(x, y, 100, 'filled');
     xlabel('X');
     ylabel('Y');
-    title('Random Points / Devices');
+    title(num2str(numPoints), ' Random Points with Brute Force Pairing');
     xlim([0 10]);
     ylim([0 10]);
     grid on;
