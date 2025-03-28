@@ -10,7 +10,7 @@ Generates random points, makes pairs with max total distance.
 
 ![Screenshot 2025-03-27 at 11 42 18 PM](https://github.com/user-attachments/assets/dfbb2514-e76c-43be-807a-58a706660a95)
 
-## bruteForce
+## bruteForce O(n!!)
 - 10 for numPoints, xRange, yRange if no input
 - points must be even
 - make random points
