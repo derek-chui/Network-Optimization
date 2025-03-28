@@ -64,12 +64,12 @@ function bestPairs = bruteForce(numPoints, xRange, yRange)
         end
     end
 
-    %- display pairs + max total distance
+    %display pairs + max total distance
     disp('Best Pairs:');
     disp(bestPairs);
     disp(['Max Total Distance: ', num2str(maxTotDist)]);
 
-    % show the best pairings on graph (lines)
+    %show the best pairings on graph (lines)
     for j = 1:size(bestPairs, 1)
         idx1 = bestPairs(j, 1);
         idx2 = bestPairs(j, 2);
