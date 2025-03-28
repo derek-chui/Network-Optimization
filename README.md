@@ -1,6 +1,6 @@
 # Network-Optimization
 
-Generates random points, makes pairs with max total distance.
+Generates random points, makes pairs with max total distance using MATLAB.
 
 ## randPoints
 - 10 for numPoints, xRange, yRange if no input
