@@ -1,5 +1,7 @@
 %plan:
-%- make 10 random points
+%- 10 for numPoints, xRange, yRange if no input
+%- points must be even
+%- make random points
 %- make graph with points
 %- make all possible pairings (brute force) with helper function
 %- write the helper function that generates all unique pairings (brute force) recursively
@@ -7,11 +9,18 @@
 %- display pairs + max total distance
 %- show the best pairings on graph
 
-function bestPairs = bruteForce()
-    %make 10 random points
-    numPoints = 10;
-    x = rand(1, numPoints) * 10;
-    y = rand(1, numPoints) * 10;
+function bestPairs = bruteForce(numPoints, xRange, yRange)
+    if nargin < 1
+        numPoints = 10; %10 for numPoints, xRange, yRange if no input
+        xRange = 10;
+        yRange = 10;
+    elseif mod(numPoints, 2) ~= 0 %points must be even
+        error('numPoints must be even');
+    end
+    
+    %make random points
+    x = rand(1, numPoints) * xRange;
+    y = rand(1, numPoints) * yRange;
     points = [x; y]';
     disp('Random Points / Devices:');
     disp(points);
@@ -88,4 +97,4 @@ function pairings = makePairings(indices) %(n-1)!! ways to form pairs = O(n!!) c
     end
 end
 
-%Improvements: Iterative or even greedy approach for 10+ points
+%Next: Greedy approach for 10+ points?
