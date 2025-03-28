@@ -2,14 +2,15 @@
 
 Generates random points, makes pairs with max total distance.
 
-##randPoints
+## randPoints
 - 10 for numPoints, xRange, yRange if no input
 - points must be even
 - make random points
 - make graph with points
+
 ![Screenshot 2025-03-27 at 11 42 18 PM](https://github.com/user-attachments/assets/dfbb2514-e76c-43be-807a-58a706660a95)
 
-##bruteForce
+## bruteForce
 - 10 for numPoints, xRange, yRange if no input
 - points must be even
 - make random points
@@ -19,4 +20,5 @@ Generates random points, makes pairs with max total distance.
 - look through each set made (brute force) and find max total distance
 - display pairs + max total distance
 - show the best pairings on graph
+
 ![Screenshot 2025-03-27 at 11 42 35 PM](https://github.com/user-attachments/assets/53107d38-1331-4a37-b3f7-51df9a78d927)
