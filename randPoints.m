@@ -1,17 +1,19 @@
 %plan:
-%- 10 for numPoints, xRange, yRange if no input
-%- points must be even
+%- input points: 0 args = default, otherwise must have 3, numPoints even
 %- make random points
 %- make graph with points
 
 function [points] = randPoints(numPoints,xRange, yRange)
 
-    if nargin < 1 %10 for numPoints, xRange, yRange if no input
+    %input points: 0 args = default, otherwise must have 3, numPoints even
+    if nargin == 0
         numPoints = 10;
         xRange = 10;
         yRange = 10;
-    elseif mod(numPoints, 2) ~= 0 %points must be even
-        error('numPoints must be even');
+    elseif nargin ~= 3
+        error('Need 3 arguments if using input (numPoints, xRange, yRange)');
+    elseif mod(numPoints, 2) ~= 0
+        error('Number of points must be even');
     end
     
     %make random points
