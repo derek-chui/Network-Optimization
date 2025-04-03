@@ -77,8 +77,8 @@ function bruteForce()
     disp(['Total Distance: ', num2str(totDist2)]);
     
     disp(' ');
-    disp(['How much better is BF Compared to 1st Set? ', num2str(maxTotDist - totDist1)]);
-    disp(['How much better is BF Compared to 2nd Set? ', num2str(maxTotDist - totDist2)]);
+    disp(['How much better is Brute Force Compared to 1st Set? ', num2str(maxTotDist - totDist1)]);
+    disp(['How much better is Brute Force Compared to 2nd Set? ', num2str(maxTotDist - totDist2)]);
     disp(['The higher the numbers, the more effective the brute force algorithm is compared to predicted cases.'])
 end
 
