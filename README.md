@@ -1,6 +1,6 @@
 # Network-Optimization
 
-Generates random points, makes pairs with max total distance. 
+Generates random points, makes pairs with max total distance using MATLAB.
 Currently implemented brute force O(n!!) comparing it with default O(1) sets.
 Comparing how much more max total distance the brute force O(n!!) set are compared to comparison O(1) sets.
 
