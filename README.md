@@ -40,3 +40,7 @@ Comparing how much more max total distance the brute force O(n!!) set are compar
 
 ![Screenshot 2025-04-10 at 8 49 09 PM](https://github.com/user-attachments/assets/e9e0b290-4219-4a70-a545-3a340577bf78)
 ![Screenshot 2025-04-10 at 8 49 43 PM](https://github.com/user-attachments/assets/d9226d26-2d58-4a40-a5c4-5dbd48ef4bf3)
+
+The following papers are referenced in making these algorithms:
+- D-NLUPA: Dynamic User Clustering and Power Allocation for Uplink and Downlink Non-Orthogonal Multiple Access (NOMA) Systems
+- D-NOMA: New User Grouping Scheme for Better User Pairing in NOMA Systems
