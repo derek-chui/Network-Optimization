@@ -67,12 +67,12 @@ function bruteForce()
     disp(['Max Total Distance: ', num2str(maxTotDist)]);
     
     disp(' ');
-    disp('Set 1 O(1)');
+    disp('Set 1 O(1): ');
     disp(set1);
     disp(['Total Distance: ', num2str(totDist1)]);
     
     disp(' ');
-    disp('Set 2 O(1)');
+    disp('Set 2 O(1): ');
     disp(set2);
     disp(['Total Distance: ', num2str(totDist2)]);
     
