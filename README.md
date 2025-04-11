@@ -44,3 +44,5 @@ Comparing how much more max total distance the brute force O(n!!) set are compar
 The following papers are referenced in making these algorithms:
 - D-NLUPA: Dynamic User Clustering and Power Allocation for Uplink and Downlink Non-Orthogonal Multiple Access (NOMA) Systems
 - D-NOMA: New User Grouping Scheme for Better User Pairing in NOMA Systems
+
+## Next: Greedy O(n^3)
