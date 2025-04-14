@@ -26,17 +26,8 @@ Working on implementing and comparing it with greedy O(n^3).
 ![Screenshot 2025-04-02 at 10 51 17 PM](https://github.com/user-attachments/assets/40f38a49-3171-4887-9beb-e5b4ebd6b69b)
 
 ## NOMA O(nlogn)
-- make 10 random points
-- sort these 10 points relative to origin (1 closest)
-- make brute force pairing O(n!!) with points
 - D-NOMA and D-NLUPA pairings O(nlogn)
-- make comparison pairing O(1) with points
-- show brute force pairs on graph
-- show results in command window
-- HELPER FUNCTIONS
 - D-NOMA and D-NLUPA funcs
-- tot dist for this pairing set
-- generates all unique pairings (brute force) recursively
 
 ![Screenshot 2025-04-10 at 8 49 09 PM](https://github.com/user-attachments/assets/e9e0b290-4219-4a70-a545-3a340577bf78)
 ![Screenshot 2025-04-10 at 8 49 43 PM](https://github.com/user-attachments/assets/d9226d26-2d58-4a40-a5c4-5dbd48ef4bf3)
@@ -46,3 +37,7 @@ The following papers are referenced in making these algorithms:
 - D-NOMA: New User Grouping Scheme for Better User Pairing in NOMA Systems
 
 ## Next: Greedy O(n^3)
+- greedy pairings O(n^3)
+- greedy funcs
+
+
