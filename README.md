@@ -40,4 +40,4 @@ The following papers are referenced in making these algorithms:
 - greedy pairings O(n^3)
 - greedy funcs
 
-
+## Next: Cache O(1)
