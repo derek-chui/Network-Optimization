@@ -7,6 +7,8 @@ Later will look into greedy and pattern recognition.
 
 [Documentation](https://docs.google.com/document/d/14G8pNsJsSaJc02iIsvGAqQGKgUyCtUJMqTkqEhJl50w/edit?tab=t.0)
 
+Below are the descriptions for each file:
+
 ## randPoints
 - input points: 10 for numPoints, xRange, yRange if no input, otherwise must have 3, numPoints must be even
 - make random points
