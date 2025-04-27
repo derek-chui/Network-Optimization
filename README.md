@@ -29,6 +29,7 @@ Below are the descriptions for each file
 ![Screenshot 2025-04-02 at 10 51 17 PM](https://github.com/user-attachments/assets/40f38a49-3171-4887-9beb-e5b4ebd6b69b)
 
 ## NOMA O(nlogn)
+Added:
 - D-NOMA and D-NLUPA pairings O(nlogn)
 - D-NOMA and D-NLUPA funcs
 
