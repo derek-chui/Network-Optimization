@@ -39,5 +39,3 @@ The following papers are referenced in making these algorithms:
 ## Next: Greedy O(n^3)
 - greedy pairings O(n^3)
 - greedy funcs
-
-## Next: Cache O(1)
