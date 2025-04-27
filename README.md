@@ -4,8 +4,8 @@
 - First implemented brute force O(n!!) as a baseline. Goal is to get brute force results in O(1) time.
 - Working on implementing the many types of NOMA O(nlogn) from various research papers. This is much faster, but worse results than brute force.
 - [NOMA Documentation](https://docs.google.com/document/d/14G8pNsJsSaJc02iIsvGAqQGKgUyCtUJMqTkqEhJl50w/edit?tab=t.0)
-- Later will look into greedy O(n^3) and pattern recognition.
-Below are the descriptions for each file
+- Later will look into pattern recognition.
+- Below are the descriptions for each file
 
 ## randPoints
 - input points: 10 for numPoints, xRange, yRange if no input, otherwise must have 3, numPoints must be even
