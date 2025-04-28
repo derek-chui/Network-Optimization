@@ -152,10 +152,10 @@ function pairs = DNLUPAPairing(N)
 end
 
 function pairs = MUGPairing(N)
-    %appx MUG by pairing close indices
+    %pairing neighbours
     pairs = [];
-    for i = 1:2:N-1
-        pairs = [pairs; i, i+1];
+    for i = 1:2:N-1 %1, 3, 5..
+        pairs = [pairs; i, i+1]; %pair 1 with 2, 3 with 4..
     end
     %if odd, last point pairs with nearest available earlier point
     if mod(N,2) ~= 0
@@ -165,16 +165,18 @@ end
 
 function [LCG, DEC] = LCG_DECPairing(points)
     N = size(points, 1);
-    % LCG, greedy sort by tot dist
+    %LCG, sort by distance to origin (redundant)
     [~, order] = sort(sqrt(sum(points.^2, 2)));
     LCG = [];
+    %pair adjacent
     for i = 1:2:N-1
         LCG = [LCG; order(i), order(i+1)];
     end
-    % DEC, alternating strongest and weakest
+    %DEC, get strongest and weakest vals
     [~, strong] = sort(points(:,1) + points(:,2) + points(:,3), 'descend');
     [~, weak] = sort(points(:,1) + points(:,2) + points(:,3), 'ascend');
     DEC = [];
+    %pair ith strongest with ith weakest
     for i = 1:N/2
         DEC = [DEC; strong(i), weak(i)];
     end
