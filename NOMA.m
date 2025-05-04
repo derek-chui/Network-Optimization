@@ -65,6 +65,12 @@ function NOMA()
     end
 
     %all pairing functions
+    set1 = [1, 10; 2, 9; 3, 8; 4, 7; 5, 6];
+    totDist1 = calcTotDist(set1, points);
+
+    set2 = [1, 6; 2, 7; 3, 8; 4, 9; 5, 10];
+    totDist2 = calcTotDist(set2, points);
+
     DNOMA = DNOMAPairing(numPoints);
     totDistDNOMA = calcTotDist(DNOMA, points);
     
@@ -75,8 +81,8 @@ function NOMA()
     totDistMUG = calcTotDist(MUG, points);
 
     LCG = LCGPairing(points);
-    DEC = DECPairing(points);
     totDistLCG = calcTotDist(LCG, points);
+    DEC = DECPairing(points);
     totDistDEC = calcTotDist(DEC, points);
 
     hungarianPairs = hungarianPairing(costMatrix, close, far);
@@ -102,6 +108,8 @@ function NOMA()
     
     %show results in command window
     results.BruteForce     = struct('pairs', bestPairs,        'totalDist', maxTotDist,       'complexity', 'O(n!!)');
+    results.set1           = struct('pairs', set1,             'totalDist', totDist1,         'complexity', 'O(1)');
+    results.set2           = struct('pairs', set2,             'totalDist', totDist2,         'complexity', 'O(1)');
     results.DNOMA          = struct('pairs', DNOMA,            'totalDist', totDistDNOMA,     'complexity', 'O(nlogn)');
     results.DNLUPA         = struct('pairs', DNLUPA,           'totalDist', totDistDNLUPA,    'complexity', 'O(nlogn)');
     results.MUG            = struct('pairs', MUG,              'totalDist', totDistMUG,       'complexity', 'O(n)');
@@ -128,14 +136,12 @@ function pairs = DNOMAPairing(N)
     g3 = (floor(N/2)+1):floor(3*N/4);
     %SFF (Second Farthest Far)
     g4 = (floor(3*N/4)+1:N);
-    
     %pair g1 with g3 (odd)
     oddPairs = [];
     len = min(length(g1), length(g3));
     for i = 1:len
         oddPairs = [oddPairs; g1(i), g3(i)];
     end
-    
     %pair g2 with g4 (even)
     evenPairs = [];
     len = min(length(g2), length(g4));
