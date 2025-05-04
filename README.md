@@ -1,5 +1,9 @@
 # Network-Optimization
 
+Non Orthogonal Multiple Access is a wireless communication technique used in 5G to allow multiple users to share the same time and frequency resources, but with different power levels.
+
+NOMA works best when a strong (close) user is paired with a weak (far) user. So our goal is to makes pairs from a set of users with a max total distance when added up.
+
 - Overview: Generates random points, makes pairs with max total distance using MATLAB.
 - First implemented brute force O(n!!) as a baseline. Goal is to get brute force results in O(1) time.
 - Working on implementing the many types of NOMA O(nlogn) from various research papers. This is much faster, but worse results than brute force.
