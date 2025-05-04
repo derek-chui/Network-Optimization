@@ -30,8 +30,8 @@
 
 ## NOMA
 Added:
-%- all pairing functions
-%- all NOMA helper functions
+- all pairing functions
+- all NOMA helper functions
 
 Removed:
 - make comparison pairing O(1) with points
