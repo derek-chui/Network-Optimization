@@ -43,4 +43,5 @@ The following papers are referenced in making these algorithms:
 - D-NLUPA: Dynamic User Clustering and Power Allocation for Uplink and Downlink Non-Orthogonal Multiple Access (NOMA) Systems
 - D-NOMA: New User Grouping Scheme for Better User Pairing in NOMA Systems
 - MUG: Multi-user Grouping Algorithm in Multi-carrier NOMA System
-- LCG_DEC: Performance of Deep Embedded Clustering and Low-Complexity Greedy Algorithm for Power Allocation in NOMA-Based 5G Communication
+- LCG&DEC: Performance of Deep Embedded Clustering and Low-Complexity Greedy Algorithm for Power Allocation in NOMA-Based 5G Communication
+- Hungarian&JV: Optimal user pairing using the shortest path algorithm
