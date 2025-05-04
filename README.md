@@ -36,8 +36,8 @@ Added:
 Removed:
 - make comparison pairing O(1) with points
 
-![Screenshot 2025-04-27 at 5 14 08 PM](https://github.com/user-attachments/assets/4c7350d3-acc7-4cba-88f0-21cbdfbf3f2c)
-![Screenshot 2025-04-27 at 5 14 38 PM](https://github.com/user-attachments/assets/3ec9d92a-bf4f-49e1-916d-eb7a5f7e859d)
+![Screenshot 2025-05-04 at 12 50 10 PM](https://github.com/user-attachments/assets/ce6f9004-df51-4c1e-a69c-0f557cd43462)
+![Screenshot 2025-05-04 at 12 50 27 PM](https://github.com/user-attachments/assets/6b2a7b09-2f8d-4d08-8147-25e767053b04)
 
 The following papers are referenced in making these algorithms:
 - D-NLUPA: Dynamic User Clustering and Power Allocation for Uplink and Downlink Non-Orthogonal Multiple Access (NOMA) Systems
