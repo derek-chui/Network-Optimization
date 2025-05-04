@@ -36,11 +36,9 @@ NOMA works best when a strong (close) user is paired with a weak (far) user. So 
 
 ## NOMA
 Added:
+- cost matrix for hungarian
 - all pairing functions
 - all NOMA helper functions
-
-Removed:
-- make comparison pairing O(1) with points
 
 ![Screenshot 2025-05-04 at 12 50 10 PM](https://github.com/user-attachments/assets/ce6f9004-df51-4c1e-a69c-0f557cd43462)
 ![Screenshot 2025-05-04 at 12 50 27 PM](https://github.com/user-attachments/assets/6b2a7b09-2f8d-4d08-8147-25e767053b04)
