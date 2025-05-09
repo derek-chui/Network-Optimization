@@ -4,12 +4,14 @@
 %- cost matrix for hungarian
 %- make brute force pairing O(n!!) with points
 %- all pairing functions
+%- show all pairings on graph
 %- show brute force pairs on graph
 %- show results in command window
 %- HELPER FUNCTIONS
 %- all pairing functions
 %- calc tot dist for pairing set
 %- generates all unique pairings (brute force) recursively
+%- plot pairings
 %- print pairings
 %- compare results to brute force
 
@@ -93,18 +95,18 @@ function NOMA()
     greedyPairs = greedyPairing(points);
     totDistGreedy = calcTotDist(greedyPairs, points);
     
-    %show brute force pairs on graph
-    figure;
-    scatter3(points(:,1), points(:,2), points(:,3), 100, 'filled');
-    hold on;
-    for j = 1:size(bestPairs, 1)
-        idx1 = bestPairs(j, 1);
-        idx2 = bestPairs(j, 2);
-        plot3([points(idx1,1), points(idx2,1)], [points(idx1,2), points(idx2,2)], [points(idx1,3), points(idx2,3)], 'r-', 'LineWidth', 2);
-    end
-    xlabel('X'); ylabel('Y'); zlabel('Z');
-    title('Brute Force Pairs');
-    grid on;
+    %show all pairings on graph
+    plotPairing(points, bestPairs, 'Brute Force');
+    plotPairing(points, set1, 'Set 1');
+    plotPairing(points, set2, 'Set 2');
+    plotPairing(points, DNOMA, 'DNOMA');
+    plotPairing(points, DNLUPA, 'DNLUPA');
+    plotPairing(points, MUG, 'MUG');
+    plotPairing(points, LCG, 'LCG');
+    plotPairing(points, DEC, 'DEC');
+    plotPairing(points, hungarianPairs, 'Hungarian');
+    plotPairing(points, jvPairs, 'JV');
+    plotPairing(points, greedyPairs, 'Greedy');
     
     %show results in command window
     results.BruteForce     = struct('pairs', bestPairs,        'totalDist', maxTotDist,       'complexity', 'O(n!!)');
@@ -271,13 +273,30 @@ function pairings = makePairings(indices) %(n-1)!! ways to form pairs = O(n!!) c
     end
 end
 
+%plot pairings
+function plotPairing(points, pairs, name)
+    figure;
+    scatter3(points(:,1), points(:,2), points(:,3), 100, 'filled');
+    hold on;
+    for j = 1:size(pairs, 1)
+        idx1 = pairs(j, 1);
+        idx2 = pairs(j, 2);
+        plot3([points(idx1,1), points(idx2,1)], ...
+              [points(idx1,2), points(idx2,2)], ...
+              [points(idx1,3), points(idx2,3)], ...
+              'r-', 'LineWidth', 2);
+    end
+    xlabel('X'); ylabel('Y'); zlabel('Z');
+    title([name, ' Pairing']);
+    grid on;
+end
+
 %print pairings
 function printPairingResults(results)
     fields = fieldnames(results);
     for i = 1:length(fields)
         key = fields{i};
         pairStruct = results.(key);
-        disp(' ');
         disp([key, ' Set ', pairStruct.complexity, ':']);
         disp(pairStruct.pairs);
         disp(['Total Distance: ', num2str(pairStruct.totalDist)]);
