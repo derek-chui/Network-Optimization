@@ -5,7 +5,6 @@
 %- make brute force pairing O(n!!) with points
 %- all pairing functions
 %- show all pairings on graph
-%- show brute force pairs on graph
 %- show results in command window
 %- HELPER FUNCTIONS
 %- all pairing functions
