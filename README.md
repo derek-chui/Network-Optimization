@@ -21,8 +21,9 @@ NOMA works best when a strong (close) user is paired with a weak (far) user. So 
 ![Screenshot 2025-04-02 at 10 51 17 PM](https://github.com/user-attachments/assets/40f38a49-3171-4887-9beb-e5b4ebd6b69b)
 
 ## NOMA
-![Screenshot 2025-05-04 at 12 50 10 PM](https://github.com/user-attachments/assets/ce6f9004-df51-4c1e-a69c-0f557cd43462)
-![Screenshot 2025-05-04 at 12 50 27 PM](https://github.com/user-attachments/assets/6b2a7b09-2f8d-4d08-8147-25e767053b04)
+![Screenshot 2025-05-10 at 9 56 57 PM](https://github.com/user-attachments/assets/08f6ed77-64fd-4cff-a0fd-7abebda8ed5b)
+![Screenshot 2025-05-10 at 9 57 09 PM](https://github.com/user-attachments/assets/64ca3819-bde8-41c6-9774-dcf9acfd2b66)
+![Screenshot 2025-05-10 at 9 57 16 PM](https://github.com/user-attachments/assets/5e10b689-1a3c-4442-9501-169822a71275)
 
 The following papers are referenced in making these algorithms:
 - D-NLUPA: Dynamic User Clustering and Power Allocation for Uplink and Downlink Non-Orthogonal Multiple Access (NOMA) Systems
