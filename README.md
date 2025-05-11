@@ -30,3 +30,13 @@ The following papers are referenced in making these algorithms:
 - MUG: Multi-user Grouping Algorithm in Multi-carrier NOMA System
 - LCG&DEC: Performance of Deep Embedded Clustering and Low-Complexity Greedy Algorithm for Power Allocation in NOMA-Based 5G Communication
 - Hungarian&JV: Optimal user pairing using the shortest path algorithm
+
+## NOMA3
+![Screenshot 2025-05-10 at 9 54 54 PM](https://github.com/user-attachments/assets/9c8579d2-fffb-4fc8-9429-56a24e73813d)
+![Screenshot 2025-05-10 at 9 55 08 PM](https://github.com/user-attachments/assets/ec41e81a-34e1-4940-861b-964f27aaf1da)
+![Screenshot 2025-05-10 at 9 55 16 PM](https://github.com/user-attachments/assets/169f7fbb-9b48-4ee2-a70c-fe156f524e98)
+
+## NOMA3S
+![Screenshot 2025-05-10 at 9 55 38 PM](https://github.com/user-attachments/assets/4e63766f-d384-4a3c-a83e-2e157a5e3a40)
+![Screenshot 2025-05-10 at 9 55 49 PM](https://github.com/user-attachments/assets/17674807-7bba-493e-ab87-72a4145a0112)
+![Screenshot 2025-05-10 at 9 55 59 PM](https://github.com/user-attachments/assets/3bb82641-9f96-4d34-b3b6-d1c132fccde6)
