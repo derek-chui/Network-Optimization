@@ -121,31 +121,29 @@ end
 %all grouping functions
 function triplets = DNOMAGrouping(N)
     g1 = 1:4;
-    g1 = 5:8;
-    g1 = 9:12;
-    triplets = [g1(1), g1(1), g1(1);
-                g1(2), g1(2), g1(2);
-                g1(3), g1(3), g1(3);
-                g1(4), g1(4), g1(4)];
+    g2 = 5:8;
+    g3 = 9:12;
+    triplets = [g1(1), g2(1), g3(1);
+                g1(2), g2(2), g3(2);
+                g1(3), g2(3), g3(3);
+                g1(4), g2(4), g3(4)];
 end
 
 function triplets = DNLUPAGrouping(N)
-    % indices = 1:N;
-    % triplets = reshape(indices, 3, [])';
     triplets = [1,6,12; 2,5,11; 3,8,10; 4,7,9];
 end
 
 function triplets = MUGGrouping(N)
-    triplets = reshape(1:N, 3, [])';
+    triplets = reshape(1:N, 3, [])'; %3 groups
 end
 
 function triplets = LCGGrouping(points)
-    [~, order] = sort(sqrt(sum(points.^2, 2)));
-    triplets = reshape(order, 3, [])';
+    [~, order] = sort(sqrt(sum(points.^2, 2))); %order from origin
+    triplets = reshape(order, 3, [])'; %dist from origin
 end
 function triplets = DECGrouping(points)
-    strengths = sum(points, 2);
-    [~, sorted] = sort(strengths, 'descend');
+    strengths = sum(points, 2); %strength by xyz sum
+    [~, sorted] = sort(strengths, 'descend'); %strong to weak
     triplets = reshape(sorted, 3, [])';
 end
 
@@ -155,16 +153,16 @@ function triplets = greedyGrouping(points, weights)
     while length(indices) >= 3
         maxScore = -inf;
         best = [];
-        for i = 1:length(indices)
+        for i = 1:length(indices) %try all possible comb. of 3 pts
             for j = i+1:length(indices)
                 for k = j+1:length(indices)
-                    idx = [indices(i), indices(j), indices(k)];
+                    idx = [indices(i), indices(j), indices(k)]; %score of each triplet
                     p = points(idx,:);
                     w = weights(idx);
                     distSum = norm(p(1,:) - p(2,:)) + norm(p(2,:) - p(3,:)) + norm(p(1,:) - p(3,:));
                     weightDiff = max(w) - min(w);
                     score = distSum + weightDiff;
-                    if score > maxScore
+                    if score > maxScore %track best triplet
                         maxScore = score;
                         best = idx;
                     end
@@ -185,7 +183,7 @@ function score = calcScore(groupingSet, points, weights)
         w = weights(idx);
         distSum = norm(p(1,:) - p(2,:)) + norm(p(2,:) - p(3,:)) + norm(p(1,:) - p(3,:));
         weightDiff = max(w) - min(w);
-        score = score + distSum + weightDiff;
+        score = score + distSum + weightDiff; %heaviest - lightest
     end
 end
 
@@ -200,7 +198,7 @@ function groupings = makeGroupings(indices)
     for i = 2:length(indices)
         for j = i+1:length(indices)
             rest = indices([2:i-1, i+1:j-1, j+1:end]);
-            sub = makeGroupings(rest);
+            sub = makeGroupings(rest); %recursive
             for k = 1:length(sub)
                 groupings{end+1} = [first, indices(i), indices(j); sub{k}];
             end
@@ -242,8 +240,7 @@ function printTripletResults(results)
         triplets = tripletStruct.triplets;
         fprintf('\n%s Grouping (%s):\n', key, tripletStruct.complexity);
         disp(triplets);
-        
-        fprintf('Weights for each triplet:\n');
+        fprintf('Triplet Weights:\n');
         for j = 1:size(triplets,1)
             w = tripletStruct.weights(j,:);
             fprintf('  Triplet %d: [%.2f, %.2f, %.2f]\n', j, w(1), w(2), w(3));
