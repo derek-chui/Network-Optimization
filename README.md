@@ -7,11 +7,11 @@ NOMA works best when a strong (close) user is paired with a weak (far) user. So 
 - Overview: Generates random points, makes pairs with max total distance using MATLAB.
 - First implemented brute force O(n!!) as a baseline. Goal is to get brute force results in O(1) time.
 - Then implemented the many types of NOMA from various research papers. This is much faster, but worse results than brute force.
+- Added triplets instead of pairs. Then added random weights to each point. Instead of distances, get scores (distance + weight difference).
 - See the paper notes for insights on the papers referenced:
 
 [Paper Notes](https://docs.google.com/document/d/14G8pNsJsSaJc02iIsvGAqQGKgUyCtUJMqTkqEhJl50w/edit?tab=t.0)
 
-- Added triplets instead of pairs. Then added random weights to each point. Instead of distances, get scores (distance + weight difference).
 - Specifics can be found on the slidedeck:
 
 [NOMA Slidedeck](https://docs.google.com/presentation/d/1_N1oKkR_PmWWJWkS9RF0X-JVHOiJuH3OqhkIK069pV0/edit?usp=sharing)
