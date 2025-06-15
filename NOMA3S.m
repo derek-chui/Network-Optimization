@@ -25,7 +25,7 @@ function NOMA3S()
     x = rand(1, numPoints) * xRange;
     y = rand(1, numPoints) * yRange;
     z = rand(1, numPoints) * zRange;
-    weights = rand(1, numPoints) * 10;
+    weights = rand(1, numPoints);
     points = [x; y; z]';
 
     %sort these 12 points relative to origin (1 closest)
@@ -65,15 +65,15 @@ function NOMA3S()
     greedyTriplets = greedyGrouping(points, weights);
 
     %show all groupings on graph
-    plotGroupings(points, bestTriplets, 'Brute Force');
-    plotGroupings(points, set1, 'Set 1');
-    plotGroupings(points, set2, 'Set 2');
-    plotGroupings(points, DNOMA, 'DNOMA');
-    plotGroupings(points, DNLUPA, 'DNLUPA');
-    plotGroupings(points, MUG, 'MUG');
-    plotGroupings(points, LCG, 'LCG');
-    plotGroupings(points, DEC, 'DEC');
-    plotGroupings(points, greedyTriplets, 'Greedy');
+    plotGroupings(points, bestTriplets, 'Brute Force', weights);
+    plotGroupings(points, set1, 'Set 1', weights);
+    plotGroupings(points, set2, 'Set 2', weights);
+    plotGroupings(points, DNOMA, 'DNOMA', weights);
+    plotGroupings(points, DNLUPA, 'DNLUPA', weights);
+    plotGroupings(points, MUG, 'MUG', weights);
+    plotGroupings(points, LCG, 'LCG', weights);
+    plotGroupings(points, DEC, 'DEC', weights);
+    plotGroupings(points, greedyTriplets, 'Greedy', weights);
 
     %show results in command window
     results.BruteForce = struct('triplets', bestTriplets, ...
@@ -176,14 +176,28 @@ end
 
 %calc score for grouping set
 function score = calcScore(groupingSet, points, weights)
+    alpha = 0.6;
+    P = 1;
+    N0 = 1e-4;
+    eta = 3;
+    beta = 3;
     score = 0;
-    for i = 1:size(groupingSet,1)
-        idx = groupingSet(i,:);
-        p = points(idx,:);
+    for i = 1:size(groupingSet, 1)
+        idx = groupingSet(i, :);
+        d1 = norm(points(idx(1), :));
+        d2 = norm(points(idx(2), :));
+        z1 = raylrnd(1);
+        z2 = raylrnd(1);
+        h1 = (1 / d1^(eta / 2)) * z1;
+        h2 = (1 / d2^(eta / 2)) * z2;
+        if h2 > h1
+            [h1, h2] = deal(h2, h1);
+        end
+        Udist = log2(1 + (alpha * P * h1^2) / ((1 - alpha) * P * h1^2 + N0)) + log2(1 + ((1 - alpha) * P * h2^2) / N0);
         w = weights(idx);
-        distSum = norm(p(1,:) - p(2,:)) + norm(p(2,:) - p(3,:)) + norm(p(1,:) - p(3,:));
         weightDiff = max(w) - min(w);
-        score = score + distSum + weightDiff; %heaviest - lightest
+        U = Udist + beta * weightDiff;
+        score = score + U;
     end
 end
 
@@ -207,7 +221,7 @@ function groupings = makeGroupings(indices)
 end
 
 %plot groupings
-function plotGroupings(points, triplets, name)
+function plotGroupings(points, triplets, name, weights)
     figure;
     scatter3(points(:,1), points(:,2), points(:,3), 100, 'filled');
     hold on;
@@ -217,6 +231,15 @@ function plotGroupings(points, triplets, name)
         plot3([points(idx(1),1), points(idx(3),1)], ...
               [points(idx(1),2), points(idx(3),2)], ...
               [points(idx(1),3), points(idx(3),3)], 'r-', 'LineWidth', 2);
+    end
+    for i = 1:size(points,1)
+        text(points(i,1), points(i,2), points(i,3), ...
+            sprintf('%.2f', weights(i)), ...
+            'FontSize', 10, 'FontWeight', 'bold', ...
+            'Color', 'w', 'EdgeColor', 'k', ...
+            'BackgroundColor', 'k', ...
+            'Margin', 1, ...
+            'HorizontalAlignment', 'left');
     end
     xlabel('X'); ylabel('Y'); zlabel('Z');
     title([name, ' Triplets']);
