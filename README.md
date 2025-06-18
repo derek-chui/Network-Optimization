@@ -38,6 +38,6 @@ The following papers are referenced in making these algorithms:
 - Hungarian&JV: Optimal user pairing using the shortest path algorithm
 
 ## NOMA3S
-![Screenshot 2025-06-14 at 2 21 09 AM](https://github.com/user-attachments/assets/1942b115-fcf5-49d8-af99-6522bc70cc9e)
-![Screenshot 2025-06-14 at 2 21 42 AM](https://github.com/user-attachments/assets/57f14ffc-2562-48aa-9043-648af42cf8dc)
-![Screenshot 2025-06-14 at 2 22 17 AM](https://github.com/user-attachments/assets/5cc75b0c-8514-4666-b011-56763c747482)
+![Screenshot 2025-06-17 at 8 49 46 PM](https://github.com/user-attachments/assets/cdeafd15-615f-4443-86c7-00f091fee322)
+![Screenshot 2025-06-17 at 8 50 07 PM](https://github.com/user-attachments/assets/72dd7f18-9e8d-4496-b6d7-e52548ec7c80)
+![Screenshot 2025-06-17 at 8 50 13 PM](https://github.com/user-attachments/assets/8d276a79-b913-43c8-abf5-ab3577f9ced9)
