@@ -176,30 +176,28 @@ end
 
 %calc score for grouping set
 function score = calcScore(groupingSet, points, weights)
-    alpha = 0.6;
+    alpha1 = 0.6;
+    alpha2 = 0.3;
+    alpha3 = 0.1;
     P = 1;
     N0 = 1e-4;
     eta = 3;
-    beta = 3;
     score = 0;
     for i = 1:size(groupingSet, 1)
         idx = groupingSet(i, :);
-        d1 = norm(points(idx(1), :));
-        d2 = norm(points(idx(2), :));
-        z1 = raylrnd(1);
-        z2 = raylrnd(1);
-        h1 = (1 / d1^(eta / 2)) * z1;
-        h2 = (1 / d2^(eta / 2)) * z2;
-        if h2 > h1
-            [h1, h2] = deal(h2, h1);
-        end
-        Udist = log2(1 + (alpha * P * h1^2) / ((1 - alpha) * P * h1^2 + N0)) + log2(1 + ((1 - alpha) * P * h2^2) / N0);
+        d = vecnorm(points(idx, :)');
+        z = raylrnd(1, [1,3]);
+        h = (1 ./ d.^(eta/2)) .* z;
+        h = sort(h, 'descend');
         w = weights(idx);
-        weightDiff = max(w) - min(w);
-        U = Udist + beta * weightDiff;
+        R1 = w(1) * log2(1 + (alpha1 * P * h(1)^2) / (alpha2 * P * h(1)^2 + alpha3 * P * h(1)^2 + N0));
+        R2 = w(2) * log2(1 + (alpha2 * P * h(2)^2) / (alpha3 * P * h(2)^2 + N0));
+        R3 = w(3) * log2(1 + (alpha3 * P * h(3)^2) / N0);
+        U = R1 + R2 + R3;
         score = score + U;
     end
 end
+
 
 %generates all unique groupings (brute force) recursively
 function groupings = makeGroupings(indices)
