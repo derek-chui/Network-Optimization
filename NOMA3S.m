@@ -1,7 +1,7 @@
 %plan:
 %- make random points and weights
 %- sort these 12 points relative to origin (1 closest)
-%- make brute force triplet groupings O(n!!!) with points
+%- make brute force triplet groupings O(n^n) with points
 %- all grouping functions
 %- show all groupings on graph
 %- show results in command window
@@ -15,7 +15,7 @@
 %- compare results to brute force
 
 
-function NOMA3S()
+function NOMA3()
     numPoints = 12;
     xRange = 10;
     yRange = 10;
@@ -34,7 +34,7 @@ function NOMA3S()
     points = points(sortedIndices, :);
     weights = weights(sortedIndices);
 
-    %make brute force triplet groupings O(n!!!) with points
+    %make brute force triplet groupings O(n^n) with points
     pointIndices = 1:numPoints;
     groupings = makeGroupings(pointIndices);
     maxScore = -inf;
@@ -190,9 +190,9 @@ function score = calcScore(groupingSet, points, weights)
         h = (1 ./ d.^(eta/2)) .* z;
         h = sort(h, 'descend');
         w = weights(idx);
-        R1 = w(1) * log2(1 + (alpha1 * P * h(1)^2) / (alpha2 * P * h(1)^2 + alpha3 * P * h(1)^2 + N0));
-        R2 = w(2) * log2(1 + (alpha2 * P * h(2)^2) / (alpha3 * P * h(2)^2 + N0));
-        R3 = w(3) * log2(1 + (alpha3 * P * h(3)^2) / N0);
+        R1 = log2(1 + (alpha1 * P * h(1)^2) / (alpha2 * P * h(1)^2 + alpha3 * P * h(1)^2 + N0));
+        R2 = log2(1 + (alpha2 * P * h(2)^2) / (alpha3 * P * h(2)^2 + N0));
+        R3 = log2(1 + (alpha3 * P * h(3)^2) / N0);
         U = R1 + R2 + R3;
         score = score + U;
     end
