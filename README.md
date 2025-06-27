@@ -2,7 +2,7 @@
 
 Non Orthogonal Multiple Access is a wireless communication technique used in 5G to allow multiple users to share the same time and frequency resources, but with different power levels.
 
-NOMA works best when a strong (close) user is paired with a weak (far) user. So our goal is to makes pairs from a set of users with a max total distance when added up.
+NOMA works best when a strong (close) user is paired with a weak (far) user. So our goal is to makes pairs from a set of users with max total utility.
 
 - Specifics can be found on the slidedeck:
 
