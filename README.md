@@ -26,14 +26,16 @@ NOMA works best when a strong (close) user is paired with a weak (far) user. So 
 ![Screenshot 2025-05-10 at 9 57 09 PM](https://github.com/user-attachments/assets/64ca3819-bde8-41c6-9774-dcf9acfd2b66)
 ![Screenshot 2025-05-10 at 9 57 16 PM](https://github.com/user-attachments/assets/5e10b689-1a3c-4442-9501-169822a71275)
 
+## NOMA3S
+![Screenshot 2025-06-17 at 8 49 46 PM](https://github.com/user-attachments/assets/cdeafd15-615f-4443-86c7-00f091fee322)
+![Screenshot 2025-06-17 at 8 50 07 PM](https://github.com/user-attachments/assets/72dd7f18-9e8d-4496-b6d7-e52548ec7c80)
+![Screenshot 2025-06-17 at 8 50 13 PM](https://github.com/user-attachments/assets/8d276a79-b913-43c8-abf5-ab3577f9ced9)
+
+
 The following papers are referenced in making these algorithms:
 - D-NLUPA: Dynamic User Clustering and Power Allocation for Uplink and Downlink Non-Orthogonal Multiple Access (NOMA) Systems
 - D-NOMA: New User Grouping Scheme for Better User Pairing in NOMA Systems
 - MUG: Multi-user Grouping Algorithm in Multi-carrier NOMA System
 - LCG&DEC: Performance of Deep Embedded Clustering and Low-Complexity Greedy Algorithm for Power Allocation in NOMA-Based 5G Communication
 - Hungarian&JV: Optimal user pairing using the shortest path algorithm
-
-## NOMA3S
-![Screenshot 2025-06-17 at 8 49 46 PM](https://github.com/user-attachments/assets/cdeafd15-615f-4443-86c7-00f091fee322)
-![Screenshot 2025-06-17 at 8 50 07 PM](https://github.com/user-attachments/assets/72dd7f18-9e8d-4496-b6d7-e52548ec7c80)
-![Screenshot 2025-06-17 at 8 50 13 PM](https://github.com/user-attachments/assets/8d276a79-b913-43c8-abf5-ab3577f9ced9)
+- Semantics: When Semantics Meet Strategy: Stackelberg Game-Theoretic Power Trading in NOMA Wireless Networks
