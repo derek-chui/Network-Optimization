@@ -1,7 +1,7 @@
 %plan:
 %- make 10 random points
 %- sort these 10 points relative to origin (1 closest)
-%- make brute force pairing O(n!!) with points
+%- make brute force pairing O(n^(n/2)) with points
 %- make comparison pairing O(1) with points
 %- show brute force pairs on graph
 %- show results in command window
@@ -24,7 +24,7 @@ function bruteForce()
     [~, sortedIndices] = sort(dist);
     points = points(sortedIndices, :);
 
-    %make brute force pairing O(n!!) with points
+    %make brute force pairing O(n^(n/2)) with points
     pointIndices = 1:numPoints;
     pairings = makePairings(pointIndices);
     maxTotDist = -inf;
