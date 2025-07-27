@@ -1,45 +1,28 @@
-%plan:
-%- make random points and weights
-%- sort these 12 points relative to origin (1 closest)
-%- make brute force triplet groupings O(n^n) with points
-%- all grouping functions
-%- show all groupings on graph
-%- show results in command window
-%- HELPER FUNCTIONS
-%- all grouping functions
-%- calc score for grouping set
-%- generates all unique groupings (brute force) recursively
-%- plot groupings
-%- get weight for results
-%- print groupings
-%- compare results to brute force
-
-
 function NOMA3()
     numPoints = 12;
     xRange = 10;
     yRange = 10;
     zRange = 10;
 
-    %make random points and weights
+    %make rand pts
     x = rand(1, numPoints) * xRange;
     y = rand(1, numPoints) * yRange;
     z = rand(1, numPoints) * zRange;
     weights = rand(1, numPoints);
     points = [x; y; z]';
 
-    %sort these 12 points relative to origin (1 closest)
+    %sort pts from origin
     dist = sqrt(sum(points.^2, 2));
     [~, sortedIndices] = sort(dist);
-    points = points(sortedIndices, :);
+    points  = points(sortedIndices, :);
     weights = weights(sortedIndices);
 
-    %make brute force triplet groupings O(n^n) with points
+    %brute force
     pointIndices = 1:numPoints;
     groupings = makeGroupings(pointIndices);
     maxScore = -inf;
     bestTriplets = [];
-    %get total scores
+
     for i = 1:length(groupings)
         groupingSet = groupings{i};
         score = calcScore(groupingSet, points, weights);
@@ -49,22 +32,16 @@ function NOMA3()
         end
     end
 
-    %all grouping functions
-    set1 = [1, 12, 2; 3, 11, 4; 5, 10, 6; 7, 9, 8];
-    set2 = [1, 2, 3; 4, 5, 6; 7, 8, 9; 10, 11, 12];
-
-    DNOMA = DNOMAGrouping(numPoints);
-
-    DNLUPA = DNLUPAGrouping(numPoints);
-
-    MUG = MUGGrouping(numPoints);
-
-    LCG = LCGGrouping(points);
-    DEC = DECGrouping(points);
-
+    %grouping funcs
+    set1    = [1, 12, 2; 3, 11, 4; 5, 10, 6; 7, 9, 8];
+    set2    = [1, 2, 3; 4, 5, 6; 7, 8, 9; 10, 11, 12];
+    DNOMA   = DNOMAGrouping(numPoints);
+    DNLUPA  = DNLUPAGrouping(numPoints);
+    MUG     = MUGGrouping(numPoints);
+    LCG     = LCGGrouping(points);
+    DEC     = DECGrouping(points);
     greedyTriplets = greedyGrouping(points, weights);
 
-    %show all groupings on graph
     plotGroupings(points, bestTriplets, 'Brute Force', weights);
     plotGroupings(points, set1, 'Set 1', weights);
     plotGroupings(points, set2, 'Set 2', weights);
@@ -75,7 +52,6 @@ function NOMA3()
     plotGroupings(points, DEC, 'DEC', weights);
     plotGroupings(points, greedyTriplets, 'Greedy', weights);
 
-    %show results in command window
     results.BruteForce = struct('triplets', bestTriplets, ...
         'weights', getWeight(bestTriplets, weights), ...
         'totalScore', maxScore, 'complexity', 'O(n!!!)');
@@ -116,13 +92,10 @@ function NOMA3()
     compareBruteForce(results);
 end
 
-%HELPER FUNCTIONS
+%helpers
 
-%all grouping functions
 function triplets = DNOMAGrouping(N)
-    g1 = 1:4;
-    g2 = 5:8;
-    g3 = 9:12;
+    g1 = 1:4; g2 = 5:8; g3 = 9:12;
     triplets = [g1(1), g2(1), g3(1);
                 g1(2), g2(2), g3(2);
                 g1(3), g2(3), g3(3);
@@ -134,54 +107,59 @@ function triplets = DNLUPAGrouping(N)
 end
 
 function triplets = MUGGrouping(N)
-    triplets = reshape(1:N, 3, [])'; %3 groups
+    triplets = reshape(1:N, 3, [])';
 end
 
 function triplets = LCGGrouping(points)
-    [~, order] = sort(sqrt(sum(points.^2, 2))); %order from origin
-    triplets = reshape(order, 3, [])'; %dist from origin
+    [~, order] = sort(sqrt(sum(points.^2, 2)));
+    triplets = reshape(order, 3, [])';
 end
+
 function triplets = DECGrouping(points)
-    strengths = sum(points, 2); %strength by xyz sum
-    [~, sorted] = sort(strengths, 'descend'); %strong to weak
+    strengths = sum(points, 2);
+    [~, sorted] = sort(strengths, 'descend');
     triplets = reshape(sorted, 3, [])';
 end
 
 function triplets = greedyGrouping(points, weights)
     indices = 1:size(points,1);
     triplets = [];
+    eta = 3;
+    alpha1 = 0.6; alpha2 = 0.3; alpha3 = 0.1;
+    P = 1; N0 = 1e-4;
+
     while length(indices) >= 3
-        maxScore = -inf;
-        best = [];
-        for i = 1:length(indices) %try all possible comb. of 3 pts
+        bestScore = -inf;
+        bestGroup = [];
+        for i = 1:length(indices)
             for j = i+1:length(indices)
                 for k = j+1:length(indices)
-                    idx = [indices(i), indices(j), indices(k)]; %score of each triplet
-                    p = points(idx,:);
-                    w = weights(idx);
-                    distSum = norm(p(1,:) - p(2,:)) + norm(p(2,:) - p(3,:)) + norm(p(1,:) - p(3,:));
-                    weightDiff = max(w) - min(w);
-                    score = distSum + weightDiff;
-                    if score > maxScore %track best triplet
-                        maxScore = score;
-                        best = idx;
+                    idx = [indices(i), indices(j), indices(k)];
+                    d = vecnorm(points(idx, :)');
+                    z = raylrnd(1, [1,3]);
+                    h = (1 ./ d.^(eta/2)) .* z;
+                    h = sort(h, 'descend');
+                    R1 = log2(1 + (alpha1 * P * h(1)^2) / (alpha2 * P * h(1)^2 + alpha3 * P * h(1)^2 + N0));
+                    R2 = log2(1 + (alpha2 * P * h(2)^2) / (alpha3 * P * h(2)^2 + N0));
+                    R3 = log2(1 + (alpha3 * P * h(3)^2) / N0);
+                    U  = R1 + R2 + R3;
+                    w  = mean(weights(idx));
+                    score = U * w;
+                    if score > bestScore
+                        bestScore = score;
+                        bestGroup = idx;
                     end
                 end
             end
         end
-        triplets = [triplets; best];
-        indices = setdiff(indices, best);
+        triplets = [triplets; bestGroup];
+        indices = setdiff(indices, bestGroup);
     end
 end
 
-%calc score for grouping set
 function score = calcScore(groupingSet, points, weights)
-    alpha1 = 0.6;
-    alpha2 = 0.3;
-    alpha3 = 0.1;
-    P = 1;
-    N0 = 1e-4;
-    eta = 3;
+    alpha1 = 0.6; alpha2 = 0.3; alpha3 = 0.1;
+    P = 1; N0 = 1e-4; eta = 3;
     score = 0;
     for i = 1:size(groupingSet, 1)
         idx = groupingSet(i, :);
@@ -189,17 +167,16 @@ function score = calcScore(groupingSet, points, weights)
         z = raylrnd(1, [1,3]);
         h = (1 ./ d.^(eta/2)) .* z;
         h = sort(h, 'descend');
-        w = weights(idx);
         R1 = log2(1 + (alpha1 * P * h(1)^2) / (alpha2 * P * h(1)^2 + alpha3 * P * h(1)^2 + N0));
         R2 = log2(1 + (alpha2 * P * h(2)^2) / (alpha3 * P * h(2)^2 + N0));
         R3 = log2(1 + (alpha3 * P * h(3)^2) / N0);
-        U = R1 + R2 + R3;
-        score = score + U;
+        U  = R1 + R2 + R3;
+        w  = mean(weights(idx));
+        score = score + U * w;  % WEIGHTED
     end
 end
 
-
-%generates all unique groupings (brute force) recursively
+%make all unique groupings recursively (w bf)
 function groupings = makeGroupings(indices)
     if isempty(indices)
         groupings = {[]};
@@ -210,7 +187,7 @@ function groupings = makeGroupings(indices)
     for i = 2:length(indices)
         for j = i+1:length(indices)
             rest = indices([2:i-1, i+1:j-1, j+1:end]);
-            sub = makeGroupings(rest); %recursive
+            sub = makeGroupings(rest);
             for k = 1:length(sub)
                 groupings{end+1} = [first, indices(i), indices(j); sub{k}];
             end
@@ -218,17 +195,18 @@ function groupings = makeGroupings(indices)
     end
 end
 
-%plot groupings
 function plotGroupings(points, triplets, name, weights)
-    figure;
+    figure('Color', 'w');
     scatter3(points(:,1), points(:,2), points(:,3), 100, 'filled');
     hold on;
+    colors = lines(size(triplets,1));
     for i = 1:size(triplets,1)
         idx = triplets(i,:);
-        plot3(points(idx,1), points(idx,2), points(idx,3), 'r-', 'LineWidth', 2);
+        c = colors(i,:);
+        plot3(points(idx,1), points(idx,2), points(idx,3), '-', 'LineWidth', 2, 'Color', c);
         plot3([points(idx(1),1), points(idx(3),1)], ...
               [points(idx(1),2), points(idx(3),2)], ...
-              [points(idx(1),3), points(idx(3),3)], 'r-', 'LineWidth', 2);
+              [points(idx(1),3), points(idx(3),3)], '-', 'LineWidth', 2, 'Color', c);
     end
     for i = 1:size(points,1)
         text(points(i,1), points(i,2), points(i,3), ...
@@ -240,11 +218,11 @@ function plotGroupings(points, triplets, name, weights)
             'HorizontalAlignment', 'left');
     end
     xlabel('X'); ylabel('Y'); zlabel('Z');
-    title([name, ' Triplets']);
+    title([name, ' Triplets (Weighted)']);
     grid on;
 end
 
-%get weight for results
+%get trip weights
 function weightsMatrix = getWeight(triplets, weights)
     weightsMatrix = zeros(size(triplets));
     for i = 1:size(triplets, 1)
@@ -252,7 +230,6 @@ function weightsMatrix = getWeight(triplets, weights)
     end
 end
 
-%print groupings
 function printTripletResults(results)
     fields = fieldnames(results);
     for i = 1:length(fields)
@@ -266,11 +243,10 @@ function printTripletResults(results)
             w = tripletStruct.weights(j,:);
             fprintf('  Triplet %d: [%.2f, %.2f, %.2f]\n', j, w(1), w(2), w(3));
         end
-        fprintf('Total Score (Distance + Weight Difference): %.4f\n\n', tripletStruct.totalScore);
+        fprintf('Total Score (Weighted Utility): %.4f\n\n', tripletStruct.totalScore);
     end
 end
 
-%compare results to brute force
 function compareBruteForce(results)
     bruteForceScore = results.BruteForce.totalScore;
     methods = fieldnames(results);
@@ -283,5 +259,5 @@ function compareBruteForce(results)
         delta = bruteForceScore - results.(method).totalScore;
         disp(['Brute Force v ', method, '? ', num2str(delta)]);
     end
-    disp('The higher the difference, the more optimal brute force is for (distance + weight difference).');
+    disp('The higher the difference, the more optimal brute force is for (weighted utility).');
 end
