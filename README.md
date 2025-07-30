@@ -3,7 +3,7 @@
 Below are all the resources and files used for the the following submissions:
 
 - IEEE CCNC 2026: "Semantic Utility Driven User Pairing and Triplet Grouping for NOMA Networks"
-- BayLearn 2025 Call for Abstracts: "Semantic Aware User Pairing for 6G NOMA Networks Using Reinforcement Learning"
+- BayLearn 2025 Call for Abstracts: "Semantic utility driven NOMA networks & reinforcement learning."
 
 Non Orthogonal Multiple Access is a wireless communication technique used in 5G to allow multiple users to share the same time and frequency resources, but with different power levels. NOMA works best when a strong (close) user is paired with a weak (far) user. So our goal is to makes pairs from a set of users with max total utility.
 
