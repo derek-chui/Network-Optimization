@@ -1,4 +1,4 @@
-# Network-Optimization
+# Network Optimization
 
 This repository contains a collection of projects regarding efficient user clustering in NOMA 6G Networks
 
