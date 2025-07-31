@@ -15,7 +15,7 @@ See the paper notes for insights on some of the papers referenced:
 
 [Paper Notes](https://docs.google.com/document/d/14G8pNsJsSaJc02iIsvGAqQGKgUyCtUJMqTkqEhJl50w/edit?tab=t.0)
 
-The MATLAB algorithms used to develop the simulation can be found in this repository.
+The MATLAB algorithms used to develop the simulations can be viewed below:
 
 - [randPoints](./randPoints.m): Generates random points across a 2D plane
 - [bruteForce](./bruteForce.m): Baseline protocol, returns the best possible utility
