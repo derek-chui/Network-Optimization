@@ -2,10 +2,12 @@
 
 This repository contains a collection of projects regarding efficient user clustering in NOMA 6G Networks
 
-Below are all the resources and files used for the following submissions:
+Below are all the resources and files used for the following publications:
 
 - IEEE CCNC 2026: "Semantic Utility Driven User Pairing and Triplet Grouping for NOMA Networks"
 - BayLearn 2025 Call for Abstracts: "Semantic utility driven NOMA networks & reinforcement learning."
+
+Both of these are submitted and currently being reviewed.
 
 The initial outline and draft can be found here:
 
