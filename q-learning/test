@@ -1,0 +1,82 @@
+function test()
+rng(1)
+
+K = 8; P = 1; N0 = 1e-4; eta = 3; Rmin = 0.05;
+
+%q learning setup
+A = [0.6 0.7 0.8]; %power to weak user
+nA = numel(A);
+idx = @(rb,db) (rb-1)*2 + db; %3 ratio bins * 2 gap bins = 6 states
+Q = zeros(6, nA);
+E = 1200; lr = 0.10; eps0 = 0.30; epsF = 0.02;
+
+for e = 1:E
+    [g, s] = env(K, eta); %channel gains & semantic weights
+    [iw, is] = pair_SG(g, s); %sgnoma, pick one weak+strong
+
+    %states
+    r  = g(is)/g(iw); %strong/weak gain ratio
+    d  = abs(s(is) - s(iw)); %semantic gap
+    rb = 1 + (r >= 2) + (r >= 5); %<2, <5, >=5  -> 1..3
+    db = 1 + (d >= 0.33); %<0.33 or >=0.33 -> 1..2
+    si = idx(rb, db);
+
+    %epsilon greedy pick alpha
+    eps = eps0 + (epsF - eps0) * (e / E);
+    if rand < eps, a = randi(nA); else, [~, a] = max(Q(si, :)); end
+    alpha = A(a);
+
+    %reward: semantic weighted sum rate + soft qos penalty
+    [Rw, Rs] = rates(g(iw), g(is), alpha, P, N0);
+    rew = s(iw)*Rw + s(is)*Rs - 0.1*(Rw < Rmin);
+
+    %td(0) update (one step)
+    Q(si, a) = Q(si, a) + lr * (rew - Q(si, a));
+end
+
+%learn policy (alpha choices per state)
+policy = zeros(3,2);
+for rb = 1:3
+    for db = 1:2
+        [~, a] = max(Q(idx(rb,db), :));
+        policy(rb,db) = A(a);
+    end
+end
+disp('Policy alpha by [gain ratio bin (1:<2, 2:<5, 3:>=5), semantic gap bin (1:<0.33, 2:>=0.33)]:')
+disp(policy)
+
+%eval vs fixed data
+M = 1000; sumQL = 0; sumFix = 0; alpha_fix = 0.7;
+for t = 1:M
+    [g, s] = env(K, eta); [iw, is] = pair_SG(g, s);
+    r = g(is)/g(iw); d = abs(s(is) - s(iw));
+    rb = 1 + (r >= 2) + (r >= 5); db = 1 + (d >= 0.33);
+    [~, a] = max(Q(idx(rb,db), :)); alpha = A(a);
+    [Rw, Rs] = rates(g(iw), g(is), alpha, P, N0); sumQL  = sumQL  + s(iw)*Rw + s(is)*Rs;
+    [Rw, Rs] = rates(g(iw), g(is), alpha_fix, P, N0);    sumFix = sumFix + s(iw)*Rw + s(is)*Rs;
+end
+fprintf('Avg semantic utility (QL):  %.4f\n', sumQL/M);
+fprintf('Avg semantic utility (%.2f): %.4f\n', alpha_fix, sumFix/M);
+
+%helpers
+function [g, s] = env(K, eta)
+    r = 10 + (100-10)*rand(K,1);
+    ray = (randn(K,1) + 1j*randn(K,1))/sqrt(2);
+    h = ray .* (r.^(-eta/2));
+    g = abs(h).^2;
+    s = rand(K,1);
+end
+
+function [iW, iS] = pair_SG(g, s)
+    [~, order] = sort(g, 'ascend'); 
+    W = order(1:floor(K/2)); S = order(floor(K/2)+1:end);
+    [~, a] = max(s(W)); [~, b] = max(s(S));
+    iW = W(a); iS = S(b);
+end
+
+function [Rw, Rs] = rates(gw, gs, alpha, P, N0)
+    SINRw = (alpha*P*gw)/((1-alpha)*P*gw + N0);
+    SINRs = ((1-alpha)*P*gs)/N0;
+    Rw = log2(1 + SINRw);  Rs = log2(1 + SINRs);
+end
+end
