@@ -8,33 +8,36 @@ A = [0.6 0.7 0.8]; %power to weak user
 nA = numel(A);
 idx = @(rb,db) (rb-1)*2 + db; %3 ratio bins * 2 gap bins = 6 states
 Q = zeros(6, nA);
-E = 1200; lr = 0.10; eps0 = 0.30; epsF = 0.02;
+E = 1200;
+lr = 0.10;
+eps0 = 0.30; %init exploration prob
+epsF = 0.02; %final
 
 for e = 1:E
-    [g, s] = env(K, eta); %channel gains & semantic weights
-    [iw, is] = pair_SG(g, s); %sgnoma, pick one weak+strong
+    [g, s] = env(K, eta); %generate environment
+    [iw, is] = pair_SG(g, s); %pick weak and strong
 
     %states
-    r  = g(is)/g(iw); %strong/weak gain ratio
+    r  = g(is)/g(iw); %strength ratio
     d  = abs(s(is) - s(iw)); %semantic gap
     rb = 1 + (r >= 2) + (r >= 5); %<2, <5, >=5  -> 1..3
     db = 1 + (d >= 0.33); %<0.33 or >=0.33 -> 1..2
     si = idx(rb, db);
 
-    %epsilon greedy pick alpha
-    eps = eps0 + (epsF - eps0) * (e / E);
+    %probability of eps that the agent explores rand action
+    %otherwise exploit best q val
+    eps = eps0 + (epsF - eps0) * (e / E); %exploration rate decays
     if rand < eps, a = randi(nA); else, [~, a] = max(Q(si, :)); end
     alpha = A(a);
 
-    %reward: semantic weighted sum rate + soft qos penalty
     [Rw, Rs] = rates(g(iw), g(is), alpha, P, N0);
-    rew = s(iw)*Rw + s(is)*Rs - 0.1*(Rw < Rmin);
+    rew = s(iw)*Rw + s(is)*Rs - 0.1*(Rw < Rmin); %pen if rate below min
 
-    %td(0) update (one step)
+    %td(0) update
     Q(si, a) = Q(si, a) + lr * (rew - Q(si, a));
 end
 
-%learn policy (alpha choices per state)
+%extract best action for each state (3x2)
 policy = zeros(3,2);
 for rb = 1:3
     for db = 1:2
@@ -43,9 +46,9 @@ for rb = 1:3
     end
 end
 disp('Policy alpha by [gain ratio bin (1:<2, 2:<5, 3:>=5), semantic gap bin (1:<0.33, 2:>=0.33)]:')
-disp(policy)
+disp(policy) %show final power alloc strat
 
-%eval vs fixed data
+%run test trials, recomp stat, apply learned policy
 M = 1000; sumQL = 0; sumFix = 0; alpha_fix = 0.7;
 for t = 1:M
     [g, s] = env(K, eta); [iw, is] = pair_SG(g, s);
@@ -75,8 +78,8 @@ function [iW, iS] = pair_SG(g, s)
 end
 
 function [Rw, Rs] = rates(gw, gs, alpha, P, N0)
-    SINRw = (alpha*P*gw)/((1-alpha)*P*gw + N0);
-    SINRs = ((1-alpha)*P*gs)/N0;
+    SINRw = (alpha*P*gw)/((1-alpha)*P*gw + N0); %weak = decode
+    SINRs = ((1-alpha)*P*gs)/N0; %strong = SIC
     Rw = log2(1 + SINRw);  Rs = log2(1 + SINRs);
 end
 end
