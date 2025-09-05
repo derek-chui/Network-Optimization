@@ -1,151 +1,163 @@
-%bs at origin, pinch antennas A1 and A2, 2 users, try all antenna
-%activiation combs, get noma rate with sic, pick best activation
-
 clear;
 clc;
 close all;
+
+K = 2; %num users must be even to pair
+M = 6; %num antennas
 rng('shuffle');
 
 %params
-% eta   = 3;
-% P     = 1;
-% N0    = 1e-4;
-% alpha1 = 0.6;
-% alpha2 = 0.4;
-% sigma = 1;
-% L     = 100;
-
-%old params resulted in unrealistic sum rates
-eta   = 3;
-P     = 10;
-N0    = 1e-5;
+eta = 3;
+P = 10;
+N0 = 1e-5;
 alpha1 = 0.6;
 alpha2 = 0.4;
 sigma = 1;
-L     = 100;
-
-%channel gain multiplier
-%g_i = 1 + sum_k(act_k * Gk * coupling(user_i, ant_k))
-%coupling(d) = 1 / (1 + (d/r0)^gamma), better for closer users
-% G1 = 3.0;  %a1 active linear gain factor
-% G2 = 3.0;  %same but a2
-% r0 = 20;   %coupling length scale
-% gamma = 2; % coupling roll off exp
-
-%old params resulted in unrealistic sum rates
-G1 = 6.0;
-G2 = 6.0;
+L = 100;
+G = 6.0*ones(1,M);
 r0 = 40;
 gamma = 1.5;
 
-BS   = [0, 0];        
-A1   = [ 50, 50];      
-A2   = [-50, -50];      
-U1   = (rand(1,2)*2-1)*L; 
-U2   = (rand(1,2)*2-1)*L;
+BS = [0, 0];
+
+%can set manually
+% A = [ 50  50;
+%      -50 -50;
+%       50 -50;
+%      -50  50];
+
+%or equally spaced in a circle
+R = 70; %antenna ring radius
+theta = linspace(0, 2*pi, M+1); theta(end) = [];
+A = [R*cos(theta(:)), R*sin(theta(:))];
 
 %helpers
 rayleigh = @(s) s*sqrt(-2*log(max(1e-12,rand)));
-d = @(x,y) max(1e-3, sqrt(sum((x-y).^2,2)));
+dist = @(X,Y) sqrt(sum((X - Y).^2, 2));
+coupling_fun = @(d) 1 ./ (1 + (d./r0).^gamma); %user antenna contribution
 
-coupling = @(dist) 1 ./ (1 + (dist./r0).^gamma);
+noma_pair_rates = @(hw, hs) deal( ...
+    log2(1 + (alpha1*P*hw.^2) ./ (alpha2*P*hw.^2 + N0)), ...
+    log2(1 + (alpha2*P*hs.^2) ./ N0) );
 
-noma_rates = @(hweak, hstrong) deal(log2(1 + (alpha1*P*hweak^2)/(alpha2*P*hweak^2 + N0)), log2(1 + (alpha2*P*hstrong^2)/N0) );                       
+%rand user loc
+U = (rand(K,2)*2 - 1) * L;
 
-%BS to users
-d1 = d(U1, BS);
-z1 = rayleigh(sigma);
-h1_direct = z1 / (d1^(eta/2));
-d2 = d(U2, BS);
-z2 = rayleigh(sigma);
-h2_direct = z2 / (d2^(eta/2));
+%bs to users
+dBU = dist(U, repmat(BS,K,1));
+z = arrayfun(@(i) rayleigh(sigma), 1:K).';
+h_direct = z ./ (max(1e-3, dBU).^(eta/2));
 
-%pinch coupling to each user
-c11 = coupling(d(U1, A1)); %U1 A1
-c12 = coupling(d(U1, A2)); %U1 A2
-c21 = coupling(d(U2, A1)); %U2 A1
-c22 = coupling(d(U2, A2)); %U2 A2
-
-%try all combinations
-modes = [ 0 0;
-          1 0;
-          0 1;
-          1 1 ];
-
-results = struct('act',{},'h_eff',{},'R1',{},'R2',{},'sumR',{});
-
-for m = 1:size(modes,1)
-    a1 = modes(m,1);  a2 = modes(m,2);
-
-    %gain mult
-    g1 = 1 + a1*G1*c11 + a2*G2*c12;
-    g2 = 1 + a1*G1*c21 + a2*G2*c22;
-
-    %channels with pinch assistance
-    h1 = h1_direct * g1;
-    h2 = h2_direct * g2;
-
-    %id weak/strong by channel magnitude
-    if h1 <= h2
-        [Rw, Rs] = noma_rates(h1, h2);
-        map = 'U1 = weak, U2 = strong';
-    else
-        [Rw, Rs] = noma_rates(h2, h1);
-        map = 'U2 = weak, U1 = strong';
-    end
-
-    results(m).act   = [a1,a2];
-    results(m).h_eff = [h1,h2];
-    results(m).R1 = Rw; %R weak
-    results(m).R2 = Rs; %R strong
-    results(m).sumR  = Rw + Rs;  
-    results(m).map   = map;
+%user antenna coupling
+C = zeros(K,M);
+for m = 1:M
+    C(:,m) = coupling_fun(dist(U, repmat(A(m,:),K,1)));
 end
 
-%pick best activation
-[~, idxBest] = max([results.sumR]);
-best = results(idxBest);
+%antenna avtivations
+function S = sumrate_for_activation(a, hdir, Cmat, Gvec, pair_fn, rate_fn)
+    g_mul = 1 + (Cmat * (Gvec(:).*a(:))); %1 on 0 off
+    h_eff = hdir .* g_mul;
+    %pairing
+    [~, idx] = sort(abs(h_eff), 'ascend');
+    h_sorted = h_eff(idx);
+    Kloc = numel(h_sorted);
+    hw = h_sorted(1:Kloc/2);
+    hs = flipud(h_sorted(Kloc/2+1:end));
+    [Rw, Rs] = rate_fn(hw, hs);
+    S = sum(Rw + Rs);
+end
 
-%print summary
-fprintf('User 1 (%.1f, %.1f)\n', U1);
-fprintf('User 2 (%.1f, %.1f)\n', U2);
-fprintf('%s\n', best.map);
-fprintf('R Weak = %.3f\n', best.R1);
-fprintf('R Strong = %.3f\n', best.R2);
-fprintf('Sum Rate (R Weak + R Strong) = %.3f b/s/Hz\n', best.sumR);
-fprintf('Best Activation (Highest Total Sum Rate): [A1 = %d, A2 = %d]\n', best.act(1), best.act(2));
-fprintf('Channel Gain without Pinch Antennas: |h1| = %.4g, |h2| = %.4g\n', abs(h1_direct), abs(h2_direct));
-fprintf('Channel Gain with Pinch Antennas: |h1p| = %.4g, |h2p| = %.4g\n', abs(best.h_eff(1)), abs(best.h_eff(2)));
+pair_fn = [];
+rate_fn = @(hw,hs) noma_pair_rates(hw,hs);
+if M <= 6
+    %brute force over all activations
+    allA = dec2bin(0:(2^M-1)) - '0';
+    bestS = -inf; bestA = [];
+    for r = 1:size(allA,1)
+        a = allA(r,:);
+        S = sumrate_for_activation(a, h_direct, C, G, pair_fn, rate_fn);
+        if S > bestS
+            bestS = S; bestA = a;
+        end
+    end
+else
+    %greedy to turn antennas on of they improve sum rate
+    a = zeros(1,M); bestS = sumrate_for_activation(a, h_direct, C, G, pair_fn, rate_fn);
+    improved = true;
+    while improved
+        improved = false;
+        bestLocalS = bestS; bestLocalA = a;
+        for m = 1:M
+            a_try = a; a_try(m) = 1 - a_try(m);
+            S_try = sumrate_for_activation(a_try, h_direct, C, G, pair_fn, rate_fn);
+            if S_try > bestLocalS
+                bestLocalS = S_try; bestLocalA = a_try; improved = true;
+            end
+        end
+        a = bestLocalA; bestS = bestLocalS;
+    end
+    bestA = a;
+end
+
+%metrics under best activation
+g_mul_best = 1 + (C * (G(:).*bestA(:)));
+h_eff_best = h_direct .* g_mul_best;
+
+%pairing under best activation
+[~, idxS] = sort(abs(h_eff_best), 'ascend');
+h_sorted  = h_eff_best(idxS);
+hw = h_sorted(1:K/2);
+hs = flipud(h_sorted(K/2+1:end));
+[Rw, Rs] = noma_pair_rates(hw, hs);
+pair_sumrates = Rw + Rs;
+
+%print
+fprintf('K = %d users, M = %d antennas\n', K, M);
+fprintf('Best Activation: [%s]\n', sprintf('%d', bestA));
+
+for p = 1:min(5, K/2)
+    fprintf('Pair %d: Rw = %.3f, Rs = %.3f, Sum = %.3f\n', p, Rw(p), Rs(p), pair_sumrates(p));
+end
+
+fprintf('Total Sum Rate: %.3f b/s/Hz\n', sum(pair_sumrates));
+fprintf('Mean Per Pair Sum Rate: %.3f b/s/Hz\n', mean(pair_sumrates));
 
 %plot
 figure('Color','w'); hold on; axis equal;
 xlim([-L L]); ylim([-L L]);
-xline(0,'k-','LineWidth',1);
-yline(0,'k-','LineWidth',1);
-box off
+xline(0,'k-','LineWidth',1); yline(0,'k-','LineWidth',1); box off;
+
+%bs, antennas
 plot(BS(1),BS(2),'ks','MarkerFaceColor','k','MarkerSize',9); text(BS(1)+2,BS(2),'BS');
-plot(A1(1),A1(2),'^','MarkerSize',9,'MarkerFaceColor',best.act(1)*[0 0 0]+[1 1 1], 'Color','k');
-text(A1(1)+2,A1(2),'A1');
-plot(A2(1),A2(2),'^','MarkerSize',9,'MarkerFaceColor',best.act(2)*[0 0 0]+[1 1 1], 'Color','k');
-text(A2(1)+2,A2(2),'A2');
-
-plot(U1(1),U1(2),'bo','MarkerFaceColor','b'); text(U1(1)+2,U1(2),'U1');
-plot(U2(1),U2(2),'ro','MarkerFaceColor','r'); text(U2(1)+2,U2(2),'U2');
-
-%bs to user lines
-plot([BS(1) U1(1)],[BS(2) U1(2)],'b:');
-plot([BS(1) U2(1)],[BS(2) U2(2)],'r:');
-
-%active antenna to user lines
-if best.act(1)
-    plot([A1(1) U1(1)],[A1(2) U1(2)],'b-');
-    plot([A1(1) U2(1)],[A1(2) U2(2)],'r-');
-end
-if best.act(2)
-    plot([A2(1) U1(1)],[A2(2) U1(2)],'b-');
-    plot([A2(1) U2(1)],[A2(2) U2(2)],'r-');
+for m = 1:M
+    face = bestA(m)*[0 0 0] + [1 1 1];    % filled if active
+    plot(A(m,1), A(m,2), '^', 'MarkerSize', 9, 'MarkerFaceColor', face, 'Color', 'k');
+    text(A(m,1)+2, A(m,2), sprintf('A%d', m));
 end
 
-xlabel('x (m)'); ylabel('y (m)');
-title(sprintf('2 Users with 2 Pinch Antennas'));
-grid on;
+%users
+plot(U(:,1),U(:,2),'o','MarkerFaceColor',[0.2 0.6 1],'Color',[0 0.2 0.6]);
+for i = 1:K
+    text(U(i,1)+2, U(i,2), sprintf('U%d', i));
+end
+
+userColors = lines(K);
+
+%dashed user to bs
+for i = 1:K
+    plot([BS(1) U(i,1)], [BS(2) U(i,2)], ':', 'Color', userColors(i,:), 'LineWidth', 1.2);
+end
+
+%solid user to antenna
+for m = 1:M
+    if bestA(m)==1
+        for i = 1:K
+            plot([A(m,1) U(i,1)], [A(m,2) U(i,2)], '-', 'Color', userColors(i,:), 'LineWidth', 1.2);
+        end
+    end
+end
+
+title(sprintf('Best Activation [%s], Total Sum Rate: %.3f b/s/Hz', ...
+      sprintf('%d',bestA), sum(pair_sumrates)));
+xlabel('x (m)'); ylabel('y (m)'); grid on;
