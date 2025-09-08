@@ -162,8 +162,8 @@ for m = 1:M
     end
 end
 
-title(sprintf('Best Activation [%s] | Active M=%d | Overhead=%.2f | Total Sum-Rate=%.3f', ...
-      sprintf('%d',bestA), M_active, overhead, sum(pair_sumrates)));
+title(sprintf('Best Activation [%s] | %d Active | Total Sum Rate = %.3f', ...
+      sprintf('%d',bestA), M_active, sum(pair_sumrates)));
 xlabel('x (m)'); ylabel('y (m)'); grid on;
 
 %more funcs
