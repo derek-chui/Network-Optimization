@@ -38,8 +38,8 @@ Click on the arrows to select and expand each project for more details
 
 - **Folder**: [pinch-antenna](./pinch-antenna/)
 - **Simulations**:
-    - [simulation](./pinch-antenna/): Maximize sum rate based on users and antennas
-    - [graphs](./pinch-antenna/): Evaluates antenna activation patterns and plotting average sum rates and usage
+    - [simulation](./pinch-antenna/simulation.m): Maximize sum rate based on users and antennas
+    - [graphs](./pinch-antenna/graphs.m): Evaluates antenna activation patterns and plotting average sum rates and usage
 - **Summary**: Simulation framework for Pinch Antenna Assisted NOMA, where conventional NOMA is enhanced using strategically placed pinch antennas, boosting user channel gains. Base station communicates with multiple users, pinch antennas provide further amplified signals based on user proximity, thus increasing effective gains relative to baseline channel gains. The setup provides a foundation for scaling larger networks with more users + antennas, enabling realistic antenna assisted user pairing and grouping strategies in 6G wireless systems and beyond.
 
 </details>
