@@ -107,8 +107,9 @@ end
 [best_val, best_idx] = max(avg_sumrate_pen);
 best_M = M_list(best_idx);
 
-fprintf('Empirical optimum with penalty: M = %d, Avg Sum Rate = %.3f b/s/Hz\n', best_M, best_val);
-fprintf('At this M, avg activated antennas (penalty case): %.2f\n', avg_Mactive_pen(best_idx));
+fprintf('Optimal Number of Antennas: M = %d\n', best_M);
+fprintf('Avg Sum Rate = %.3f b/s/Hz\n', best_val);
+fprintf('Avg Activated Antennas @ M = %d: %.2f\n', best_M, avg_Mactive_pen(best_idx));
 
 %plot
 figure('Color','w'); hold on; box on; grid on;
