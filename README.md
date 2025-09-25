@@ -11,7 +11,7 @@ Click on the arrows to select and expand each project for more details
 
 - **Folder**: [SG-NOMA](./SG-NOMA/)
 - **Slides**: [NOMA Proposal](https://docs.google.com/presentation/d/1_N1oKkR_PmWWJWkS9RF0X-JVHOiJuH3OqhkIK069pV0/edit?usp=sharing)
-- **Notes**: [Research Notes](https://docs.google.com/document/d/14G8pNsJsSaJc02iIsvGAqQGKgUyCtUJMqTkqEhJl50w/edit?usp=sharing)
+- **Notes**: [SG-NOMA Research Notes](https://docs.google.com/document/d/14G8pNsJsSaJc02iIsvGAqQGKgUyCtUJMqTkqEhJl50w/edit?usp=sharing)
 - **Simulations**:
     - [randPoints](./SG-NOMA/randPoints.m): Generates random points across a 2D plane
     - [bruteForce](./SG-NOMA/bruteForce.m): Baseline protocol, returns the best possible utility
@@ -27,6 +27,7 @@ Click on the arrows to select and expand each project for more details
     <summary>Pinch Antenna Assisted NOMA</summary>
 
 - **Folder**: [pinch-antenna](./pinch-antenna/)
+- **Notes**: [Pinch Antenna Research Notes](https://docs.google.com/document/d/1huzSNCxg2J__nn4J5MR6-25t5MMbg6vueq4OWNWkKiU/edit?usp=sharing)
 - **Simulations**:
     - [simulation](./pinch-antenna/simulation.m): Maximize sum rate based on users and antennas
     - [graphs](./pinch-antenna/graphs.m): Evaluates antenna activation patterns and plotting average sum rates and usage
