@@ -39,7 +39,7 @@ h0 = z ./ (max(1e-3,dBU).^(eta/2)); %Kx1 direct gains
 
 C = zeros(K,M);
 for m = 1:M
-    C(:,m) = coupling(dist(U, repmat(A(m,:),K,1))); %KxM user-antenna coupling
+    C(:,m) = coupling(dist(U, repmat(A(m,:),K,1))); %KxM user antenna coupling
 end
 
 [~, ord] = sort(abs(h0),'ascend');
@@ -78,7 +78,7 @@ end
 
 function [Ssum, perPairBest] = eval_assignment(assign, pair_users, h0, C, G, noma_pair, tau_sic, Ptx, N0, alpha1, alpha2)
     Pairs = size(pair_users,1);
-    %Preallocate struct array with consistent fields
+    %prealloc struct array with consistent fields
     perPairBest = repmat(struct('ant',[],'w',[],'Rw',0,'Rs',0,'sum',0,'hw',0,'hs',0), Pairs,1);
     Ssum = 0;
     for p = 1:Pairs
@@ -99,7 +99,7 @@ function [Ssum, perPairBest] = eval_assignment(assign, pair_users, h0, C, G, nom
             continue
         end
 
-        %initialize best candidate
+        %init best candidate
         best = struct('ant',[],'w',[],'Rw',0,'Rs',0,'sum',0,'hw',0,'hs',0);
         Smax = -inf;
 
@@ -141,7 +141,7 @@ if M <= 7 && P <= 3
     allAssign = cell(1,M);
     [allAssign{:}] = ndgrid(labels);
     mats = cellfun(@(x) x(:), allAssign, 'uni',0);
-    ASSIGN = [mats{:}]; %(#comb) x M
+    ASSIGN = [mats{:}]; %(#comb)xM
     bestS = -inf; bestAssign = []; bestPer = [];
     for r = 1:size(ASSIGN,1)
         a = ASSIGN(r,:);
@@ -214,22 +214,23 @@ for i=1:K
     text(U(i,1)+2,U(i,2),sprintf('U%d',i));
 end
 
-for i=1:K
-    plot([BS(1) U(i,1)],[BS(2) U(i,2)],':','Color',userColors(i,:), 'LineWidth',1.2);
-end
 
 for p=1:P
     u1 = pair_users(p,1); u2 = pair_users(p,2);
     plot([U(u1,1) U(u2,1)], [U(u1,2) U(u2,2)], '--', 'Color', 0.5*[1 1 1], 'LineWidth', 1.0);
 end
 
-for m=1:M
+pairColors = lines(P);
+
+for m = 1:M
     pID = bestAssign(m);
-    if pID==0, continue; end
+    if pID == 0, continue; end
     uu = pair_users(pID,:);
-    for t=1:2
+    colorPair = pairColors(pID,:);
+    for t = 1:2
         i = uu(t);
-        plot([A(m,1) U(i,1)], [A(m,2) U(i,2)], '-', 'Color', userColors(i,:), 'LineWidth', 1.6);
+        plot([A(m,1) U(i,1)], [A(m,2) U(i,2)], '-', ...
+             'Color', colorPair, 'LineWidth', 1.8);
     end
 end
 
