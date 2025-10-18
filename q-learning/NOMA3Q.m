@@ -1,12 +1,13 @@
 function NOMA3Q()
     rng('shuffle');
-    numPoints = 12; %change number of users here
-    xRange = 10; yRange = 10; zRange = 10; %change simulation dimensions here
-
-    %make rand pts
-    x = rand(1, numPoints) * xRange;
-    y = rand(1, numPoints) * yRange;
-    z = rand(1, numPoints) * zRange;
+    numPoints = 12; %change num users here
+    xMin = -5; xMax = 5;
+    yMin = -5; yMax = 5;
+    zMin = -5; zMax = 5;
+    
+    x = xMin + (xMax - xMin) * rand(1, numPoints);
+    y = yMin + (yMax - yMin) * rand(1, numPoints);
+    z = zMin + (zMax - zMin) * rand(1, numPoints);
     weights = rand(1, numPoints);
     points = [x; y; z]';
 
@@ -47,7 +48,7 @@ function NOMA3Q()
         'epsilon_start', 0.90, ...   %explore start
         'epsilon_end',   0.05, ...   %expl final
         'epsilon_decay', 0.995, ...  %decay per ep
-        'log_every',     100, ...     %print every x eps
+        'log_every',     100, ...    %print every x eps
         'verbose',       true ...    %print switch
     );
     [qTriplets, qScore] = qLearningGrouping(points, weights, qParams);
@@ -151,9 +152,9 @@ function triplets = greedyGrouping(points, weights)
             for j = i+1:length(indices)
                 for k = j+1:length(indices)
                     idx = [indices(i), indices(j), indices(k)];
-                    d = vecnorm(points(idx, :)');             % per-user |h| based on distance
-                    z = raylrnd(1, [1,3]);                    % Rayleigh fading
-                    h = (1 ./ d.^(eta/2)) .* z;               % pathloss*fading
+                    d = vecnorm(points(idx, :)');
+                    z = raylrnd(1, [1,3]);
+                    h = (1 ./ d.^(eta/2)) .* z;
                     h = sort(h, 'descend');
                     R1 = log2(1 + (alpha1 * P * h(1)^2) / (alpha2 * P * h(1)^2 + alpha3 * P * h(1)^2 + N0));
                     R2 = log2(1 + (alpha2 * P * h(2)^2) / (alpha3 * P * h(2)^2 + N0));
@@ -230,6 +231,11 @@ function plotGroupings(points, triplets, name, weights)
             'BackgroundColor', 'k', 'Margin', 1, ...
             'HorizontalAlignment', 'left');
     end
+
+    plot3(0, 0, 0, 'rp', 'MarkerSize', 12, 'MarkerFaceColor', 'r');
+    
+    xlim([-5 5]); ylim([-5 5]); zlim([-5 5]);
+    
     xlabel('X'); ylabel('Y'); zlabel('Z');
     title([name, ' Triplets (Weighted)']);
     grid on;
@@ -279,7 +285,7 @@ end
 function [triplets, episodeBestScore] = qLearningGrouping(points, weights, p)
     %logging results
     if ~isfield(p,'log_every'), p.log_every = max(1, floor(p.episodes/20)); end %log every 5%
-    if ~isfield(p,'verbose'),   p.verbose   = true; end
+    if ~isfield(p,'verbose'), p.verbose = true; end
 
     %STATE = remaining users unassigned + current partial triplet (orderless)
     %ACTION = choose one index from remaining to add to current triplet
@@ -295,9 +301,9 @@ function [triplets, episodeBestScore] = qLearningGrouping(points, weights, p)
     eps = p.epsilon_start;
     for ep = 1:p.episodes
         remaining = true(1,N);
-        current   = [];      %index for curr unfinished trip
-        cumScore  = 0;
-        traceTrip = [];      %final trip of episode
+        current = []; %index for curr unfinished trip
+        cumScore = 0;
+        traceTrip = []; %final trip of episode
 
         %episode
         while any(remaining)
