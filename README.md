@@ -9,10 +9,13 @@ Click on the arrows to select and expand each project for more details
 <details>
     <summary>IEEE CCNC 2026: "Semantic Utility Driven User Pairing and Triplet Grouping for NOMA Networks"</summary>
 
+- **Status**: Rejected as regular paper but accepted as a poster
 - **Folder**: [SG-NOMA](./SG-NOMA/)
 - **Slides**: [NOMA Proposal](https://docs.google.com/presentation/d/1_N1oKkR_PmWWJWkS9RF0X-JVHOiJuH3OqhkIK069pV0/edit?usp=sharing)
 - **Notes**: [SG-NOMA Research Notes](https://docs.google.com/document/d/14G8pNsJsSaJc02iIsvGAqQGKgUyCtUJMqTkqEhJl50w/edit?usp=sharing)
-- **Submission**: [IEEE CCNC 2026 SG-NOMA](./SG-NOMA/IEEE%20CCNC%202026%20SG-NOMA.pdf)
+- **Submissions**:
+    - [IEEE CCNC 2026 SG-NOMA](./SG-NOMA/IEEE%20CCNC%202026%20SG-NOMA.pdf)
+    - [IEEE CCNC 2026 SG-NOMA (Short)](./SG-NOMA/NOMA3S/IEEE%20CCNC%202026%20SG-NOMA%20(Short).pdf)
 - **Simulations**:
     - [randPoints](./SG-NOMA/randPoints.m): Generates random points across a 2D plane
     - [bruteForce](./SG-NOMA/bruteForce.m): Baseline protocol, returns the best possible utility
@@ -20,6 +23,8 @@ Click on the arrows to select and expand each project for more details
     - [NOMA3](./SG-NOMA/NOMA3.m): Groups users in triplets and returns utilities for all researched algorithms
     - [etaRayleigh](./SG-NOMA/etaRayleigh.m): Utilities as a function of path loss exponent and Rayleigh fading
     - [powerNoise](./SG-NOMA/powerNoise.m): Utilities as a function of power P and noise N0
+    - [powerNoiseEtaRayleigh](./SG-NOMA/NOMA3S/powerNoiseEtaRayleigh.m): Utilities as a function of several variables (used for shorter version)
+    - [NOMA23](./SG-NOMA/NOMA3S/NOMA23.m): Grouping results for both pairs and triplets (used for shorter version)
 - **Abstract**: This paper looks into optimal algorithms for user pairing and triplet grouping in Non-Orthogonal Multiple Access (NOMA) wireless systems, aiming to maximize total utility by unifying channel characteristics with semantic relevance. As 6G wireless systems move toward task-oriented communication, it becomes increasingly important to consider the meaning and importance of user data in resource allocation. We evaluate several existing algorithms including brute force, Hungarian, and greedy approaches under a utility model that incorporates semantic value. Our study show that many traditional algorithms, designed without semantics in mind, perform suboptimally in this setting. Therefore, we propose a greedy algorithm called Semantic Greedy NOMA (SG-NOMA) that considers both channel diversity and semantic value, and demonstrate through simulations that it closely approximates brute force performance with significantly lower complexity. These findings highlight the importance of integrating semantic considerations into user grouping strategies for 6G wireless NOMA deployments.
 
 </details>
@@ -27,6 +32,7 @@ Click on the arrows to select and expand each project for more details
 <details>
     <summary>BayLearn 2025 Call for Abstracts: "Semantic utility driven NOMA networks & reinforcement learning."</summary>
 
+- **Status**: Rejected but working on implementation for another conference
 - **Folder**: [q-learning](./q-learning/)
 - **Slides**: [Q-Learning Slides](https://docs.google.com/presentation/d/1PHditpACiUvYX8aJAIAcmyD-i9RLTeeeETR5KbQPe-E/edit?usp=sharing)
 - **Notes**: [Q-Learning Research Notes](https://docs.google.com/document/d/18udG3UeT6BD7QErJse2ASpI6ao0Ye07AF26nnO2YBTM/edit?usp=sharing)
