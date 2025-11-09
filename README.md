@@ -46,6 +46,7 @@ Click on the arrows to select and expand each project for more details
 <details>
     <summary>Pinch Antenna Assisted NOMA</summary>
 
+- **Status**: On hold until spring 2026
 - **Folder**: [pinch-antenna](./pinch-antenna/)
 - **Notes**: [Pinch Antenna Research Notes](https://docs.google.com/document/d/1huzSNCxg2J__nn4J5MR6-25t5MMbg6vueq4OWNWkKiU/edit?usp=sharing)
 - **Simulations**:
