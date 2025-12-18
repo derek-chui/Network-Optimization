@@ -100,7 +100,7 @@ Click on the arrows to select and expand each project for more details
 **Below are the submissions (conferences, symposiums, grants, awards, etc.) derived from this work:**
 
 - [2026 IEEE Consumer Communications & Networking Conference](https://drive.google.com/file/d/1bnmEY68AvoT-BOUoi62nJNvAtt0XLwHg/view?usp=sharing) (Rejected as regular paper but accepted as a poster)
-- [2026 IEEE Consumer Communications & Networking Conference (Poster)]([./SG-NOMA/NOMA3S/IEEE%20CCNC%202026%20SG-NOMA%20(Short).pdf](https://drive.google.com/file/d/1TZ-hggjblw8D4OI7lmwQi5GvmUcgvjQ7/view?usp=sharing)) (Withdrawn)
+- [2026 IEEE Consumer Communications & Networking Conference (Poster)](https://drive.google.com/file/d/1TZ-hggjblw8D4OI7lmwQi5GvmUcgvjQ7/view?usp=sharing) (Withdrawn)
 
 </details>
 
