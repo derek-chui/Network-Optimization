@@ -8,10 +8,12 @@ Click on the arrows to select and expand each project for more details
 
 ### Current Projects (In Progress)
 - [Semantic Q Learning NOMA](#semantic-q-learning-noma)
-- [Pinch Antenna Assisted NOMA](#pinch-antenna-assisted-noma)
 
 ### Completed Projects
 - [Semantic Greedy NOMA](#semantic-greedy-noma)
+
+### Future Projects
+- [Pinch Antenna Assisted NOMA](#pinch-antenna-assisted-noma)
 
 ## Semantic Q Learning NOMA 
 
@@ -24,11 +26,24 @@ Click on the arrows to select and expand each project for more details
     <summary>Submissions</summary>
     
 **Below are the submissions (conferences, symposiums, grants, awards, etc.) derived from this work:**
+
 <!-- - [2026 Kuehler Undergraduate Research Award]()
 - [2026 SCU School of Engineering Research Showcase]()
 - [2026 Helene Lafrance Library Undergraduate Research Award]() -->
 - [2025 Hackworth Applied Ethics Research Grant](https://drive.google.com/file/d/1fAArEWDzZdylOofSUgRrsInHTT-JssLH/view?usp=sharing) (Rejected)
 - [2025 BayLearn Machine Learning Symposium](https://drive.google.com/file/d/1sKTumPeglMpADQQpm-wT4cGTqHteR7Kh/view?usp=sharing) (Rejected)
+
+</details>
+
+<details>
+    <summary>Resources</summary>
+    
+**Below are the resources used for this work:**
+
+- [CSEN193 Report](https://drive.google.com/file/d/1Wj3fvNztdjBkblzAmVwG4N0A-NX2bxKQ/view?usp=sharing)
+- [State of the Field Poster](https://drive.google.com/file/d/1iz9HXbXjWAm1whCISTmGGljaUdx4K9RJ/view?usp=sharing)
+- [Q-Learning Slides](https://docs.google.com/presentation/d/1PHditpACiUvYX8aJAIAcmyD-i9RLTeeeETR5KbQPe-E/edit?usp=sharing)
+- [Q-Learning Research Notes](https://docs.google.com/document/d/18udG3UeT6BD7QErJse2ASpI6ao0Ye07AF26nnO2YBTM/edit?usp=sharing)
 
 </details>
 
@@ -42,50 +57,21 @@ Click on the arrows to select and expand each project for more details
 
 </details>
 
-<details>
-    <summary>Resources</summary>
-    
-**Below are the resources used for this work:**
-
-- [CSEN193-Report](https://drive.google.com/file/d/1Wj3fvNztdjBkblzAmVwG4N0A-NX2bxKQ/view?usp=sharing)
-- [Q-Learning Slides](https://docs.google.com/presentation/d/1PHditpACiUvYX8aJAIAcmyD-i9RLTeeeETR5KbQPe-E/edit?usp=sharing)
-- [Q-Learning Research Notes](https://docs.google.com/document/d/18udG3UeT6BD7QErJse2ASpI6ao0Ye07AF26nnO2YBTM/edit?usp=sharing)
-
-</details>
-
-## Pinch Antenna Assisted NOMA
-
-- **Summary**: Enhanced NOMA using strategically placed pinch antennas to amplify user channels based on proximity. Improving effective gains over baseline, which enables scalable, antenna assisted user grouping for future 6G networks.
-- **Status**: On Hold until Spring 2026
-- **Latest Viable Product**: [simulation](./pinch-antenna/simulation.m)
-- **Folder**: [pinch-antenna](./pinch-antenna/)
-
-<details>
-    <summary>Submissions</summary>
-    
-**Below are the submissions (conferences, symposiums, grants, awards, etc.) derived from this work:**
-
-</details>
-
-<details>
-    <summary>Simulations</summary>
-    
-**Below are the simulations used for this work:**
-
-- [simulation](./pinch-antenna/simulation.m): Maximize sum rate based on users and antennas
-- [graphs](./pinch-antenna/graphs.m): Evaluates antenna activation patterns and plotting average sum rates and usage
-
-</details>
 
 
-<details>
-    <summary>Resources</summary>
-    
-**Below are the resources used for this work:**
 
-- [Pinch Antenna Research Notes](https://docs.google.com/document/d/1huzSNCxg2J__nn4J5MR6-25t5MMbg6vueq4OWNWkKiU/edit?usp=sharing)
 
-</details>
+
+
+
+
+
+
+
+
+
+
+
 
 ## Semantic Greedy NOMA
 
@@ -105,6 +91,16 @@ Click on the arrows to select and expand each project for more details
 </details>
 
 <details>
+    <summary>Resources</summary>
+    
+**Below are the resources used for this work:**
+
+- [SG-NOMA Slides](https://docs.google.com/presentation/d/1_N1oKkR_PmWWJWkS9RF0X-JVHOiJuH3OqhkIK069pV0/edit?usp=sharing)
+- [SG-NOMA Research Notes](https://docs.google.com/document/d/14G8pNsJsSaJc02iIsvGAqQGKgUyCtUJMqTkqEhJl50w/edit?usp=sharing)
+
+</details>
+
+<details>
     <summary>Simulations</summary>
     
 **Below are the simulations used for this work:**
@@ -120,12 +116,52 @@ Click on the arrows to select and expand each project for more details
 
 </details>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Pinch Antenna Assisted NOMA
+
+- **Summary**: Enhanced NOMA using strategically placed pinch antennas to amplify user channels based on proximity. Improving effective gains over baseline, which enables scalable, antenna assisted user grouping for future 6G networks.
+- **Status**: On Hold until Spring 2026
+- **Latest Viable Product**: [simulation](./pinch-antenna/simulation.m)
+- **Folder**: [pinch-antenna](./pinch-antenna/)
+
+<details>
+    <summary>Submissions</summary>
+    
+**Below are the submissions (conferences, symposiums, grants, awards, etc.) derived from this work:**
+
+</details>
+
 <details>
     <summary>Resources</summary>
     
 **Below are the resources used for this work:**
 
-- [NOMA Slides](https://docs.google.com/presentation/d/1_N1oKkR_PmWWJWkS9RF0X-JVHOiJuH3OqhkIK069pV0/edit?usp=sharing)
-- [SG-NOMA Research Notes](https://docs.google.com/document/d/14G8pNsJsSaJc02iIsvGAqQGKgUyCtUJMqTkqEhJl50w/edit?usp=sharing)
+- [Pinch Antenna Research Notes](https://docs.google.com/document/d/1huzSNCxg2J__nn4J5MR6-25t5MMbg6vueq4OWNWkKiU/edit?usp=sharing)
+
+</details>
+
+<details>
+    <summary>Simulations</summary>
+    
+**Below are the simulations used for this work:**
+
+- [simulation](./pinch-antenna/simulation.m): Maximize sum rate based on users and antennas
+- [graphs](./pinch-antenna/graphs.m): Evaluates antenna activation patterns and plotting average sum rates and usage
 
 </details>
