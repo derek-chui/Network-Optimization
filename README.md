@@ -18,7 +18,7 @@ Click on the arrows to select and expand each project for more details
 ## Semantic Q Learning NOMA 
 
 - **Status**: In Progress 
-- **Summary**: Q Learning as a reinforcement learning algorithm & improved semantic model for NOMA. Compared with previous algorithms from [Semantic Greedy NOMA](#semantic-greedy-noma) to show significant improvements in network utility.
+- **Summary**: Q Learning as a reinforcement learning algorithm & improved semantic model for NOMA. Consistent gains in network utility and scalability for future 6G wireless systems. Compared with previous algorithms from [Semantic Greedy NOMA](#semantic-greedy-noma) to show significant improvements in network utility.
 - **Latest Viable Product**: [State of the Field Essay](https://drive.google.com/file/d/1C5jopMzgl9t2hgAJOYhTnA18xQ7LQbZU/view?usp=sharing)
 - **Folder**: [q-learning](./q-learning/)
 
@@ -75,9 +75,9 @@ Click on the arrows to select and expand each project for more details
 
 ## Semantic Greedy NOMA
 
-- **Summary**: Greedy algorithm & simple semantic model for NOMA. Compared with existing algorithms drawn from other papers to show significant improvements in network utility.
-- **Status**: Completed & Improved in [Semantic Q Learning NOMA](#semantic-q-learning-noma)
-- **Final Product**: [IEEE CCNC 2026 SG-NOMA](./SG-NOMA/IEEE%20CCNC%202026%20SG-NOMA.pdf)
+- **Summary**: Greedy algorithm & simple semantic model for NOMA that outperforms existing baselines in network utility. Strong foundation later extended with reinforcement learning in [Semantic Q Learning NOMA](#semantic-q-learning-noma).
+- **Status**: Completed
+- **Final Product**: [Semantic Utility Aware User Grouping for 6G NOMA Networks](https://drive.google.com/file/d/1bnmEY68AvoT-BOUoi62nJNvAtt0XLwHg/view?usp=sharing)
 - **Folder**: [SG-NOMA](./SG-NOMA/)
 
 <details>
@@ -135,7 +135,7 @@ Click on the arrows to select and expand each project for more details
 
 ## Pinch Antenna Assisted NOMA
 
-- **Summary**: Enhanced NOMA using strategically placed pinch antennas to amplify user channels based on proximity. Improving effective gains over baseline, which enables scalable, antenna assisted user grouping for future 6G networks.
+- **Summary**: Enhanced NOMA using strategically placed pinch antennas to amplify user channels based on proximity. Potential for scalable user grouping and improved sum rates in future 6G networks.
 - **Status**: On Hold until Spring 2026
 - **Latest Viable Product**: [simulation](./pinch-antenna/simulation.m)
 - **Folder**: [pinch-antenna](./pinch-antenna/)
