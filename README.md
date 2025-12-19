@@ -19,7 +19,7 @@ Click on the arrows to select and expand each project for more details
 
 - **Status**: In Progress 
 - **Summary**: Q Learning as a reinforcement learning algorithm & improved semantic model for NOMA. Compared with previous algorithms from [Semantic Greedy NOMA](#semantic-greedy-noma) to show significant improvements in network utility.
-- **Latest Viable Product**: [CSEN193-Report](https://drive.google.com/file/d/1Wj3fvNztdjBkblzAmVwG4N0A-NX2bxKQ/view?usp=sharing)
+- **Latest Viable Product**: [State of the Field Essay](https://drive.google.com/file/d/1C5jopMzgl9t2hgAJOYhTnA18xQ7LQbZU/view?usp=sharing)
 - **Folder**: [q-learning](./q-learning/)
 
 <details>
@@ -40,7 +40,7 @@ Click on the arrows to select and expand each project for more details
     
 **Below are the resources used for this work:**
 
-- [CSEN193 Report](https://drive.google.com/file/d/1Wj3fvNztdjBkblzAmVwG4N0A-NX2bxKQ/view?usp=sharing)
+- [State of the Field Essay](https://drive.google.com/file/d/1C5jopMzgl9t2hgAJOYhTnA18xQ7LQbZU/view?usp=sharing)
 - [State of the Field Poster](https://drive.google.com/file/d/1iz9HXbXjWAm1whCISTmGGljaUdx4K9RJ/view?usp=sharing)
 - [Q-Learning Slides](https://docs.google.com/presentation/d/1PHditpACiUvYX8aJAIAcmyD-i9RLTeeeETR5KbQPe-E/edit?usp=sharing)
 - [Q-Learning Research Notes](https://docs.google.com/document/d/18udG3UeT6BD7QErJse2ASpI6ao0Ye07AF26nnO2YBTM/edit?usp=sharing)
@@ -52,8 +52,8 @@ Click on the arrows to select and expand each project for more details
     
 **Below are the simulations used for this work:**
 
-- [NOMA3Q](./q-learning/NOMA3Q.m): Groups users in triplets and returns utilities with q learning
-- [NOMA3Q2](./q-learning/NOMA3Q2.m): Groups users in triplets with new semantic model and returns utilities with q learning
+- [NOMA3Q](./q-learning/NOMA3Q.m): Groups users and returns utilities with q learning
+- [NOMA3Q2](./q-learning/NOMA3Q2.m): Groups users with new semantic model and returns utilities with q learning
 
 </details>
 
