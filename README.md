@@ -54,7 +54,7 @@ Click on the arrows to select and expand each project for more details!
 
 - [NOMA3Q2](./q-learning/NOMA3Q2.m): Groups users in triplets, compares utilities with q learning
 - [NOMA2Q2](./q-learning/NOMA2Q2.m): Groups users in pairs, compares utilities with q learning
-- [powerNoiseEtaRayleigh.m](./q-learning/powerNoiseEtaRayleigh.m): Compares utilities across multiple algorithms under various conditions.
+- [powerNoiseEtaRayleigh.m](./q-learning/powerNoiseEtaRayleigh.m): Compares utilities across multiple algorithms under various conditions
 - [NOMA3Q](./q-learning/NOMA3Q.m): Groups users in triplets with old semantic model, compares utilities with q learning
 
 </details>
