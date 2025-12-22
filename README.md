@@ -1,6 +1,6 @@
 # Network Optimization
 
-This repository contains a collection of projects regarding efficient user clustering in NOMA (Non Orthogonal Multiple Access) 6G Networks
+Efficient user clustering in NOMA (Non Orthogonal Multiple Access) 6G Networks
 
 Click on the arrows to select and expand each project for more details
 
@@ -54,7 +54,7 @@ Click on the arrows to select and expand each project for more details
 
 - [NOMA3Q2](./q-learning/NOMA3Q2.m): Groups users in triplets with new semantic model and returns utilities with q learning
 - [NOMA2Q2](./q-learning/NOMA2Q2.m): Groups users in pairs with new semantic model and returns utilities with q learning
-- [powerNoiseEtaRayleigh.m](./q-learning/powerNoiseEtaRayleigh.m): Compares utilities with new semantic model across multiple algorithms under various conditions (power, noise, eta, and rayleigh).
+- [powerNoiseEtaRayleigh.m](./q-learning/powerNoiseEtaRayleigh.m): Compares utilities with new semantic model across multiple algorithms under various conditions.
 - [NOMA3Q](./q-learning/NOMA3Q.m): Groups users in triplets and returns utilities with q learning
 
 </details>
