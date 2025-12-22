@@ -1,4 +1,4 @@
-
+function NOMA2Q2()
     rng('shuffle');
 
     numPoints = 12;
