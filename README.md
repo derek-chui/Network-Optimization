@@ -1,8 +1,8 @@
 # Network Optimization
 
-Efficient user clustering in NOMA (Non Orthogonal Multiple Access) 6G Networks
+Efficient user clustering in NOMA (Non Orthogonal Multiple Access) 6G Networks.
 
-Click on the arrows to select and expand each project for more details
+Click on the arrows to select and expand each project for more details!
 
 ## Contents
 
