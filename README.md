@@ -52,10 +52,10 @@ Click on the arrows to select and expand each project for more details!
     
 **Below are the simulations used for this work:**
 
-- [NOMA3Q2](./q-learning/NOMA3Q2.m): Groups users in triplets with new semantic model and returns utilities with q learning
-- [NOMA2Q2](./q-learning/NOMA2Q2.m): Groups users in pairs with new semantic model and returns utilities with q learning
-- [powerNoiseEtaRayleigh.m](./q-learning/powerNoiseEtaRayleigh.m): Compares utilities with new semantic model across multiple algorithms under various conditions.
-- [NOMA3Q](./q-learning/NOMA3Q.m): Groups users in triplets and returns utilities with q learning
+- [NOMA3Q2](./q-learning/NOMA3Q2.m): Groups users in triplets, compares utilities with q learning
+- [NOMA2Q2](./q-learning/NOMA2Q2.m): Groups users in pairs, compares utilities with q learning
+- [powerNoiseEtaRayleigh.m](./q-learning/powerNoiseEtaRayleigh.m): Compares utilities across multiple algorithms under various conditions.
+- [NOMA3Q](./q-learning/NOMA3Q.m): Groups users in triplets with old semantic model, compares utilities with q learning
 
 </details>
 
