@@ -27,11 +27,11 @@ Click on the arrows to select and expand each project for more details
     
 **Below are the submissions (conferences, symposiums, grants, awards, etc.) derived from this work:**
 
-<!-- - [2026 Kuehler Undergraduate Research Award]()
-- [2026 SCU School of Engineering Research Showcase]()
-- [2026 Helene Lafrance Library Undergraduate Research Award]() -->
-- [2025 Hackworth Applied Ethics Research Grant](https://drive.google.com/file/d/1fAArEWDzZdylOofSUgRrsInHTT-JssLH/view?usp=sharing) (Rejected)
-- [2025 BayLearn Machine Learning Symposium](https://drive.google.com/file/d/1sKTumPeglMpADQQpm-wT4cGTqHteR7Kh/view?usp=sharing) (Rejected)
+<!-- - [SCU School of Engineering Research Showcase]() -->
+<!-- - [Helene Lafrance Library Undergraduate Research Award]() -->
+<!-- - [SQ-NOMA Paper]() -->
+- [Hackworth Applied Ethics Research Grant](https://drive.google.com/file/d/1C5jopMzgl9t2hgAJOYhTnA18xQ7LQbZU/view?usp=sharing) (Submission)
+- [BayLearn Machine Learning Symposium](https://drive.google.com/file/d/1sKTumPeglMpADQQpm-wT4cGTqHteR7Kh/view?usp=sharing) (Submission)
 
 </details>
 
@@ -52,8 +52,10 @@ Click on the arrows to select and expand each project for more details
     
 **Below are the simulations used for this work:**
 
-- [NOMA3Q](./q-learning/NOMA3Q.m): Groups users and returns utilities with q learning
-- [NOMA3Q2](./q-learning/NOMA3Q2.m): Groups users with new semantic model and returns utilities with q learning
+- [NOMA3Q2](./q-learning/NOMA3Q2.m): Groups users in triplets with new semantic model and returns utilities with q learning
+- [NOMA2Q2](./q-learning/NOMA2Q2.m): Groups users in pairs with new semantic model and returns utilities with q learning
+- [powerNoiseEtaRayleigh.m](./q-learning/powerNoiseEtaRayleigh.m): Compares utilities with new semantic model across multiple algorithms under various conditions (power, noise, eta, and rayleigh).
+- [NOMA3Q](./q-learning/NOMA3Q.m): Groups users in triplets and returns utilities with q learning
 
 </details>
 
@@ -85,8 +87,8 @@ Click on the arrows to select and expand each project for more details
     
 **Below are the submissions (conferences, symposiums, grants, awards, etc.) derived from this work:**
 
-- [2026 IEEE Consumer Communications & Networking Conference](https://drive.google.com/file/d/1bnmEY68AvoT-BOUoi62nJNvAtt0XLwHg/view?usp=sharing) (Rejected as regular paper but accepted as a poster)
-- [2026 IEEE Consumer Communications & Networking Conference (Poster)](https://drive.google.com/file/d/1TZ-hggjblw8D4OI7lmwQi5GvmUcgvjQ7/view?usp=sharing) (Withdrawn)
+- [IEEE Consumer Communications & Networking Conference (Poster)](https://drive.google.com/file/d/1TZ-hggjblw8D4OI7lmwQi5GvmUcgvjQ7/view?usp=sharing) (Accepted)
+- [IEEE Consumer Communications & Networking Conference](https://drive.google.com/file/d/1bnmEY68AvoT-BOUoi62nJNvAtt0XLwHg/view?usp=sharing) (Submission)
 
 </details>
 
@@ -144,6 +146,8 @@ Click on the arrows to select and expand each project for more details
     <summary>Submissions</summary>
     
 **Below are the submissions (conferences, symposiums, grants, awards, etc.) derived from this work:**
+<!-- - [Kuehler Undergraduate Research Award]() -->
+<!-- - [Pinch Antenna Paper]() -->
 
 </details>
 
