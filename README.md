@@ -17,9 +17,9 @@ Click on the arrows to select and expand each project for more details!
 
 ## Semantic Q Learning NOMA 
 
-- **Status**: In Progress 
 - **Summary**: Q Learning as a reinforcement learning algorithm & improved semantic model for NOMA. Consistent gains in network utility and scalability for future 6G wireless systems. Compared with previous algorithms from [Semantic Greedy NOMA](#semantic-greedy-noma) to show significant improvements in network utility.
-- **Latest Viable Product**: [State of the Field Essay](https://drive.google.com/file/d/1C5jopMzgl9t2hgAJOYhTnA18xQ7LQbZU/view?usp=sharing)
+- **Status**: Almost Done
+- **Final Product**: [Semantic-Aware Learning-Based NOMA User Grouping for Programmable 6G RANs](https://drive.google.com/file/d/12F5-P4dct3hl-_B_vAe0MAUBt1dEbzD7/view?usp=sharing)
 - **Folder**: [q-learning](./q-learning/)
 
 <details>
@@ -29,7 +29,7 @@ Click on the arrows to select and expand each project for more details!
 
 <!-- - [SCU School of Engineering Research Showcase]() -->
 <!-- - [Helene Lafrance Library Undergraduate Research Award]() -->
-<!-- - [SQ-NOMA Paper]() -->
+- [IEEE Wireless Communications & Networking Conference](https://drive.google.com/file/d/12F5-P4dct3hl-_B_vAe0MAUBt1dEbzD7/view?usp=sharing)
 - [Hackworth Applied Ethics Research Grant](https://drive.google.com/file/d/1C5jopMzgl9t2hgAJOYhTnA18xQ7LQbZU/view?usp=sharing) (Submission)
 - [BayLearn Machine Learning Symposium](https://drive.google.com/file/d/1sKTumPeglMpADQQpm-wT4cGTqHteR7Kh/view?usp=sharing) (Submission)
 
@@ -138,7 +138,7 @@ Click on the arrows to select and expand each project for more details!
 ## Pinch Antenna Assisted NOMA
 
 - **Summary**: Enhanced NOMA using strategically placed pinch antennas to amplify user channels based on proximity. Potential for scalable user grouping and improved sum rates in future 6G networks.
-- **Status**: On Hold until Spring 2026
+- **Status**: In Progress
 - **Latest Viable Product**: [simulation](./pinch-antenna/simulation.m)
 - **Folder**: [pinch-antenna](./pinch-antenna/)
 
