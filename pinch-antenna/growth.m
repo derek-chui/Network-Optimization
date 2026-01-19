@@ -1,6 +1,6 @@
 clear;
 clc;
-close all;
+close all; 
 
 K = 2; %num users (must be even)
 M_list = 0:20; %antennas
