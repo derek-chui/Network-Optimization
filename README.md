@@ -27,9 +27,9 @@ Click on the arrows to select and expand each project for more details!
     
 **Below are the submissions (conferences, symposiums, grants, awards, etc.) derived from this work:**
 
-<!-- - [SCU School of Engineering Research Showcase]() -->
 <!-- - [Helene Lafrance Library Undergraduate Research Award]() -->
 - [IEEE Wireless Communications & Networking Conference](https://drive.google.com/file/d/12F5-P4dct3hl-_B_vAe0MAUBt1dEbzD7/view?usp=sharing)
+- [SCU School of Engineering Research Showcase](https://docs.google.com/presentation/d/15wbhp1hyqlNEOpRb6__YwI2Yva6Opd4get-9A5VJ10k/edit?usp=sharing)
 - [Hackworth Applied Ethics Research Grant](https://drive.google.com/file/d/1C5jopMzgl9t2hgAJOYhTnA18xQ7LQbZU/view?usp=sharing) (Submission)
 - [BayLearn Machine Learning Symposium](https://drive.google.com/file/d/1sKTumPeglMpADQQpm-wT4cGTqHteR7Kh/view?usp=sharing) (Submission)
 
@@ -139,7 +139,7 @@ Click on the arrows to select and expand each project for more details!
 
 - **Summary**: Enhanced NOMA using strategically placed pinch antennas to amplify user channels based on proximity. Potential for scalable user grouping and improved sum rates in future 6G networks.
 - **Status**: In Progress
-- **Latest Viable Product**: [simulation](./pinch-antenna/simulation.m)
+- **Latest Viable Product**: [circular](./pinch-antenna/circular.m)
 - **Folder**: [pinch-antenna](./pinch-antenna/)
 
 <details>
@@ -164,8 +164,8 @@ Click on the arrows to select and expand each project for more details!
     <summary>Simulations</summary>
     
 **Below are the simulations used for this work:**
-
-- [simulation](./pinch-antenna/simulation.m): Maximize sum rate based on users and antennas
-- [graphs](./pinch-antenna/graphs.m): Evaluates antenna activation patterns and plotting average sum rates and usage
+- [circular](./pinch-antenna/circular.m): Single circular waveguide simulation with updated rates.
+- [prototype](./pinch-antenna/prototype.m): First iteration of pinch antenna simulation with standard NOMA rates.
+- [growth](./pinch-antenna/growth.m): Evaluates antenna activation patterns and plotting average sum rates and usage
 
 </details>
