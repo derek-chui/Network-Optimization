@@ -155,7 +155,7 @@ Click on the arrows to select and expand each project for more details!
     <summary>Resources</summary>
     
 **Below are the resources used for this work:**
-
+- [Pinch Antenna Slides](https://docs.google.com/presentation/d/1h_JqKWFYyMGhYatl0e5yzvLRsz_A_gAQQxfmxc9z1ms/edit?usp=sharing)
 - [Pinch Antenna Research Notes](https://docs.google.com/document/d/1huzSNCxg2J__nn4J5MR6-25t5MMbg6vueq4OWNWkKiU/edit?usp=sharing)
 
 </details>
