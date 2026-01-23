@@ -8,18 +8,16 @@ Click on the arrows to select and expand each project for more details!
 
 ### Current Projects (In Progress)
 - [Semantic Q Learning NOMA](#semantic-q-learning-noma)
+- [Pinch Antenna Assisted NOMA](#pinch-antenna-assisted-noma)
 
 ### Completed Projects
 - [Semantic Greedy NOMA](#semantic-greedy-noma)
-
-### Future Projects
-- [Pinch Antenna Assisted NOMA](#pinch-antenna-assisted-noma)
 
 ## Semantic Q Learning NOMA 
 
 - **Summary**: Q Learning as a reinforcement learning algorithm & improved semantic model for NOMA. Consistent gains in network utility and scalability for future 6G wireless systems. Compared with previous algorithms from [Semantic Greedy NOMA](#semantic-greedy-noma) to show significant improvements in network utility.
 - **Status**: Almost Done
-- **Final Product**: [Semantic-Aware Learning-Based NOMA User Grouping for Programmable 6G RANs](https://drive.google.com/file/d/12F5-P4dct3hl-_B_vAe0MAUBt1dEbzD7/view?usp=sharing)
+- **Latest Viable Product**: [Semantic-Aware Learning-Based NOMA User Grouping for Programmable 6G RANs](https://drive.google.com/file/d/12F5-P4dct3hl-_B_vAe0MAUBt1dEbzD7/view?usp=sharing)
 - **Folder**: [q-learning](./q-learning/)
 
 <details>
@@ -54,13 +52,58 @@ Click on the arrows to select and expand each project for more details!
 
 - [NOMA3Q2](./q-learning/NOMA3Q2.m): Groups users in triplets, compares utilities with q learning
 - [NOMA2Q2](./q-learning/NOMA2Q2.m): Groups users in pairs, compares utilities with q learning
-- [powerNoiseEtaRayleigh.m](./q-learning/powerNoiseEtaRayleigh.m): Compares utilities across multiple algorithms under various conditions
+- [powerNoiseEtaRayleigh](./q-learning/powerNoiseEtaRayleigh.m): Compares utilities across multiple algorithms under various conditions
 - [NOMA3Q](./q-learning/NOMA3Q.m): Groups users in triplets with old semantic model, compares utilities with q learning
 
 </details>
 
 
 
+
+
+
+
+
+
+
+
+
+
+## Pinch Antenna Assisted NOMA
+
+- **Summary**: Enhanced NOMA using strategically placed pinch antennas to amplify user channels based on proximity. Potential for scalable user grouping and improved sum rates in future 6G networks. Built off of [Semantic Q Learning NOMA](#semantic-q-learning-noma).
+- **Status**: In Progress
+- **Latest Viable Product**: [Pinch Antenna Slides](https://docs.google.com/presentation/d/1h_JqKWFYyMGhYatl0e5yzvLRsz_A_gAQQxfmxc9z1ms/edit?usp=sharing)
+- **Folder**: [pinch-antenna](./pinch-antenna/)
+
+<details>
+    <summary>Submissions</summary>
+    
+**Below are the submissions (conferences, symposiums, grants, awards, etc.) derived from this work:**
+<!-- - [Pinch Antenna Paper]() -->
+<!-- - [Kuehler Undergraduate Research Award]() -->
+
+</details>
+
+<details>
+    <summary>Resources</summary>
+    
+**Below are the resources used for this work:**
+- [Pinch Antenna Slides](https://docs.google.com/presentation/d/1h_JqKWFYyMGhYatl0e5yzvLRsz_A_gAQQxfmxc9z1ms/edit?usp=sharing)
+- [Pinch Antenna Research Notes](https://docs.google.com/document/d/1huzSNCxg2J__nn4J5MR6-25t5MMbg6vueq4OWNWkKiU/edit?usp=sharing)
+
+</details>
+
+<details>
+    <summary>Simulations</summary>
+    
+**Below are the simulations used for this work:**
+- [CJPPASQNOMA](./pinch-antenna/CJPPASQNOMA.m): Circular, Joint Power, Pinch Antenna, Semantic, Q-Learning, NOMA.
+- [circular](./pinch-antenna/circular.m): Single circular waveguide simulation with updated rates.
+- [prototype](./pinch-antenna/prototype.m): First iteration of pinch antenna simulation with standard NOMA rates.
+- [growth](./pinch-antenna/growth.m): Evaluates antenna activation patterns and plotting average sum rates and usage
+
+</details>
 
 
 
@@ -129,43 +172,3 @@ Click on the arrows to select and expand each project for more details!
 
 
 
-
-
-
-
-
-
-## Pinch Antenna Assisted NOMA
-
-- **Summary**: Enhanced NOMA using strategically placed pinch antennas to amplify user channels based on proximity. Potential for scalable user grouping and improved sum rates in future 6G networks.
-- **Status**: In Progress
-- **Latest Viable Product**: [circular](./pinch-antenna/circular.m)
-- **Folder**: [pinch-antenna](./pinch-antenna/)
-
-<details>
-    <summary>Submissions</summary>
-    
-**Below are the submissions (conferences, symposiums, grants, awards, etc.) derived from this work:**
-<!-- - [Kuehler Undergraduate Research Award]() -->
-<!-- - [Pinch Antenna Paper]() -->
-
-</details>
-
-<details>
-    <summary>Resources</summary>
-    
-**Below are the resources used for this work:**
-- [Pinch Antenna Slides](https://docs.google.com/presentation/d/1h_JqKWFYyMGhYatl0e5yzvLRsz_A_gAQQxfmxc9z1ms/edit?usp=sharing)
-- [Pinch Antenna Research Notes](https://docs.google.com/document/d/1huzSNCxg2J__nn4J5MR6-25t5MMbg6vueq4OWNWkKiU/edit?usp=sharing)
-
-</details>
-
-<details>
-    <summary>Simulations</summary>
-    
-**Below are the simulations used for this work:**
-- [circular](./pinch-antenna/circular.m): Single circular waveguide simulation with updated rates.
-- [prototype](./pinch-antenna/prototype.m): First iteration of pinch antenna simulation with standard NOMA rates.
-- [growth](./pinch-antenna/growth.m): Evaluates antenna activation patterns and plotting average sum rates and usage
-
-</details>
