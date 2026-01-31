@@ -98,10 +98,9 @@ Click on the arrows to select and expand each project for more details!
     <summary>Simulations</summary>
     
 **Below are the simulations used for this work:**
-- [CJPPASQNOMA](./pinch-antenna/CJPPASQNOMA.m): Circular, Joint Power, Pinch Antenna, Semantic, Q-Learning, NOMA.
-- [circular](./pinch-antenna/circular.m): Single circular waveguide simulation with updated rates.
-- [prototype](./pinch-antenna/prototype.m): First iteration of pinch antenna simulation with standard NOMA rates.
-- [growth](./pinch-antenna/growth.m): Evaluates antenna activation patterns and plotting average sum rates and usage
+- [circular](./pinch-antenna/circular.m): Circular, Joint Power, Pinch Antenna, Semantic, Q-Learning, NOMA.
+- [linear](./pinch-antenna/linear.m): Linear, Joint Power, Pinch Antenna, Semantic, Q-Learning, NOMA.
+- [multiple](./pinch-antenna/multiple.m): Multiple, Joint Power, Pinch Antenna, Semantic, Q-Learning, NOMA.
 
 </details>
 
