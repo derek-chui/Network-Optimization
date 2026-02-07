@@ -72,10 +72,14 @@ nS = base_n;
 r_margin = 0.30*L; %keep antennas away from origin and edge
 make_lin = @(n) linspace(r_margin, L - r_margin, n).';
 
-xE = make_lin(nE);            yE = zeros(nE,1);
-xW = -make_lin(nW);           yW = zeros(nW,1);
-xN = zeros(nN,1);             yN = make_lin(nN);
-xS = zeros(nS,1);             yS = -make_lin(nS);
+xE = make_lin(nE);
+yE = zeros(nE,1);
+xW = -make_lin(nW);
+yW = zeros(nW,1);
+xN = zeros(nN,1);
+yN = make_lin(nN);
+xS = zeros(nS,1);
+yS = -make_lin(nS);
 
 A_xy = [ ...
     xE, yE; ...
@@ -86,6 +90,9 @@ A_xy = [ ...
 
 %Mx3 antenna positions
 A = [A_xy, d_wg*ones(size(A_xy,1),1)];
+
+wg_id = [ones(1,nE), 2*ones(1,nW), 3*ones(1,nN), 4*ones(1,nS)];
+n_wg = [nE nW nN nS];
 
 %users rand
 U_xy = (rand(K,2)*2 - 1)*L;
@@ -109,7 +116,8 @@ for m = 1:M
 end
 
 %baseline effective channel if all antennas active
-h_all = sum(Hc,2);
+P_ant_all = (Ptx/arms) ./ n_wg(wg_id);
+h_all = sum(Hc .* repmat(sqrt(P_ant_all), K, 1), 2);
 
 %user grouping
 if ~USE_Q_PAIRING
@@ -128,11 +136,11 @@ end
 %antenna pair assignment
 if USE_Q_ASSIGNMENT
     [bestAssign, bestS, bestPer] = qLearningAntennaAssignment( ...
-        pair_users, Hc, w_sem, Ptx, M, N0, tau_sic, USE_JOINT_ALPHA, ALPHA_GRID, ...
+        pair_users, Hc, wg_id, arms, w_sem, Ptx, M, N0, tau_sic, USE_JOINT_ALPHA, ALPHA_GRID, ...
         alpha_fixed_weak, alpha_fixed_strong, semParams, qParams);
 else
     [bestAssign, bestS, bestPer] = searchBestAssignmentSemantic( ...
-        pair_users, Hc, w_sem, Ptx, M, N0, tau_sic, USE_JOINT_ALPHA, ALPHA_GRID, ...
+        pair_users, Hc, wg_id, arms, w_sem, Ptx, M, N0, tau_sic, USE_JOINT_ALPHA, ALPHA_GRID, ...
         alpha_fixed_weak, alpha_fixed_strong, semParams);
 end
 
@@ -231,7 +239,7 @@ xlabel('x (m)'); ylabel('y (m)'); grid on;
 %helpers
 
 function [bestAssign, bestS, bestPer] = searchBestAssignmentSemantic( ...
-    pair_users, Hc, w_sem, Ptx, M, N0, tau_sic, useJointAlpha, alphaGrid, ...
+    pair_users, Hc, wg_id, arms, w_sem, Ptx, M, N0, tau_sic, useJointAlpha, alphaGrid, ...
     alpha_fixed_weak, alpha_fixed_strong, semParams)
 
     P = size(pair_users,1);
@@ -247,7 +255,7 @@ function [bestAssign, bestS, bestPer] = searchBestAssignmentSemantic( ...
         for r = 1:size(ASSIGN,1)
             a = ASSIGN(r,:);
             [Ssum, perPair] = eval_assignment_semantic( ...
-                a, pair_users, Hc, w_sem, Ptx, M, N0, tau_sic, ...
+                a, pair_users, Hc, wg_id, arms, w_sem, Ptx, M, N0, tau_sic, ...
                 useJointAlpha, alphaGrid, alpha_fixed_weak, alpha_fixed_strong, semParams);
             if Ssum > bestS
                 bestS = Ssum; bestAssign = a; bestPer = perPair;
@@ -256,7 +264,7 @@ function [bestAssign, bestS, bestPer] = searchBestAssignmentSemantic( ...
     else
         a = zeros(1,M);
         [bestS, bestPer] = eval_assignment_semantic( ...
-            a, pair_users, Hc, w_sem, Ptx, M, N0, tau_sic, ...
+            a, pair_users, Hc, wg_id, arms, w_sem, Ptx, M, N0, tau_sic, ...
             useJointAlpha, alphaGrid, alpha_fixed_weak, alpha_fixed_strong, semParams);
         bestAssign = a;
 
@@ -268,7 +276,7 @@ function [bestAssign, bestS, bestPer] = searchBestAssignmentSemantic( ...
                     if bestAssign(m)==lab, continue; end
                     a_try = bestAssign; a_try(m)=lab;
                     [S_try, per_try] = eval_assignment_semantic( ...
-                        a_try, pair_users, Hc, w_sem, Ptx, M, N0, tau_sic, ...
+                        a_try, pair_users, Hc, wg_id, arms, w_sem, Ptx, M, N0, tau_sic, ...
                         useJointAlpha, alphaGrid, alpha_fixed_weak, alpha_fixed_strong, semParams);
                     if S_try > bestS
                         bestS = S_try; bestAssign = a_try; bestPer = per_try; improved = true;
@@ -280,7 +288,7 @@ function [bestAssign, bestS, bestPer] = searchBestAssignmentSemantic( ...
 end
 
 function [Ssum, perPair] = eval_assignment_semantic( ...
-    assign, pair_users, Hc, w_sem, Ptx, M, N0, tau_sic, ...
+    assign, pair_users, Hc, wg_id, arms, w_sem, Ptx, M, N0, tau_sic, ...
     useJointAlpha, alphaGrid, alpha_fixed_weak, alpha_fixed_strong, semParams)
 
     P = size(pair_users,1);
@@ -303,6 +311,16 @@ function [Ssum, perPair] = eval_assignment_semantic( ...
         'Gs',0, ...
         'Gsum',0), P, 1);
 
+    active = assign ~= 0;
+    cnt = accumarray(wg_id(active).', 1, [arms 1]);
+    P_ant = zeros(1,M);
+    for w = 1:arms
+        if cnt(w) > 0
+            mask = active & (wg_id == w);
+            P_ant(mask) = (Ptx/arms) / cnt(w);
+        end
+    end
+
     Ssum = 0;
 
     for p = 1:P
@@ -313,8 +331,8 @@ function [Ssum, perPair] = eval_assignment_semantic( ...
         if isempty(ants)
             hA = 0; hB = 0;
         else
-            hA = sum(Hc(uA,ants));
-            hB = sum(Hc(uB,ants));
+            hA = sum(Hc(uA,ants) .* sqrt(P_ant(ants)));
+            hB = sum(Hc(uB,ants) .* sqrt(P_ant(ants)));
         end
 
         if abs(hA)^2 <= abs(hB)^2
@@ -362,7 +380,7 @@ end
 function [Rw, Rs, gamma_w, gamma_s, xi_w, xi_s, Gw, Gs] = noma2_semantic_givenAlpha( ...
     hw, hs, kw, ks, Ptx, M, N0, alpha_w, alpha_s, over, semParams)
 
-    Ppa = Ptx / M;
+    Ppa = 1;
 
     gw = abs(hw)^2;
     gs = abs(hs)^2;
@@ -426,7 +444,7 @@ function [best_aw, best_as, bestRw, bestRs, best_gw, best_gs, best_xiw, best_xis
 end
 
 function [bestAssign, bestScore, bestPer] = qLearningAntennaAssignment( ...
-    pair_users, Hc, w_sem, Ptx, M, N0, tau_sic, ...
+    pair_users, Hc, wg_id, arms, w_sem, Ptx, M, N0, tau_sic, ...
     useJointAlpha, alphaGrid, alpha_fixed_weak, alpha_fixed_strong, semParams, p)
 
     if ~isfield(p,'log_every'), p.log_every = max(1, floor(p.episodes/20)); end
@@ -460,7 +478,7 @@ function [bestAssign, bestScore, bestPer] = qLearningAntennaAssignment( ...
             reward = 0;
             if t == M
                 [reward, ~] = eval_assignment_semantic( ...
-                    a, pair_users, Hc, w_sem, Ptx, M, N0, tau_sic, ...
+                    a, pair_users, Hc, wg_id, arms, w_sem, Ptx, M, N0, tau_sic, ...
                     useJointAlpha, alphaGrid, alpha_fixed_weak, alpha_fixed_strong, semParams);
                 episodeReward = reward;
             end
@@ -501,7 +519,7 @@ function [bestAssign, bestScore, bestPer] = qLearningAntennaAssignment( ...
     end
 
     [greedyScore, greedyPer] = eval_assignment_semantic( ...
-        a, pair_users, Hc, w_sem, Ptx, M, N0, tau_sic, ...
+        a, pair_users, Hc, wg_id, arms, w_sem, Ptx, M, N0, tau_sic, ...
         useJointAlpha, alphaGrid, alpha_fixed_weak, alpha_fixed_strong, semParams);
 
     if greedyScore >= bestScore
@@ -510,7 +528,7 @@ function [bestAssign, bestScore, bestPer] = qLearningAntennaAssignment( ...
         bestPer = greedyPer;
     else
         [~, bestPer] = eval_assignment_semantic( ...
-            bestAssign, pair_users, Hc, w_sem, Ptx, M, N0, tau_sic, ...
+            bestAssign, pair_users, Hc, wg_id, arms, w_sem, Ptx, M, N0, tau_sic, ...
             useJointAlpha, alphaGrid, alpha_fixed_weak, alpha_fixed_strong, semParams);
     end
 end
