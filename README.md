@@ -6,18 +6,18 @@ Click on the arrows to select and expand each project for more details!
 
 ## Contents
 
-### Current Projects (In Progress)
-- [Semantic Q Learning NOMA](#semantic-q-learning-noma)
-- [Pinch Antenna Assisted NOMA](#pinch-antenna-assisted-noma)
-
 ### Completed Projects
+- [Semantic Q Learning NOMA](#semantic-q-learning-noma)
 - [Semantic Greedy NOMA](#semantic-greedy-noma)
+
+### Current Projects (In Progress)
+- [Pinch Antenna Assisted NOMA](#pinch-antenna-assisted-noma)
 
 ## Semantic Q Learning NOMA 
 
 - **Summary**: Q Learning as a reinforcement learning algorithm & improved semantic model for NOMA. Consistent gains in network utility and scalability for future 6G wireless systems. Compared with previous algorithms from [Semantic Greedy NOMA](#semantic-greedy-noma) to show significant improvements in network utility.
-- **Status**: Almost Done
-- **Latest Viable Product**: [Semantic-Aware Learning-Based NOMA User Grouping for Programmable 6G RANs](https://drive.google.com/file/d/12F5-P4dct3hl-_B_vAe0MAUBt1dEbzD7/view?usp=sharing)
+- **Status**: Complete
+- **Final Product**: [Semantic-Aware Learning-Based NOMA User Grouping for Programmable 6G RANs](https://drive.google.com/file/d/12F5-P4dct3hl-_B_vAe0MAUBt1dEbzD7/view?usp=sharing)
 - **Folder**: [q-learning](./q-learning/)
 
 <details>
