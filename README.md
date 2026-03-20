@@ -1,22 +1,19 @@
 # Network Optimization
 
+This repo is archived and no longer updated to reflect my latest work.
+
 Efficient user clustering in NOMA (Non Orthogonal Multiple Access) 6G Networks.
 
 Click on the arrows to select and expand each project for more details!
 
 ## Contents
-
-### Completed Projects
 - [Semantic Q Learning NOMA](#semantic-q-learning-noma)
-- [Semantic Greedy NOMA](#semantic-greedy-noma)
-
-### Current Projects (In Progress)
 - [Pinch Antenna Assisted NOMA](#pinch-antenna-assisted-noma)
+- [Semantic Greedy NOMA](#semantic-greedy-noma)
 
 ## Semantic Q Learning NOMA 
 
 - **Summary**: Q Learning as a reinforcement learning algorithm & improved semantic model for NOMA. Consistent gains in network utility and scalability for future 6G wireless systems. Compared with previous algorithms from [Semantic Greedy NOMA](#semantic-greedy-noma) to show significant improvements in network utility.
-- **Status**: Complete
 - **Final Product**: [Semantic-Aware Learning-Based NOMA User Grouping for Programmable 6G RANs](https://drive.google.com/file/d/12F5-P4dct3hl-_B_vAe0MAUBt1dEbzD7/view?usp=sharing)
 - **Folder**: [q-learning](./q-learning/)
 
@@ -25,11 +22,10 @@ Click on the arrows to select and expand each project for more details!
     
 **Below are the submissions (conferences, symposiums, grants, awards, etc.) derived from this work:**
 
-<!-- - [Helene Lafrance Library Undergraduate Research Award]() -->
-- [IEEE Wireless Communications & Networking Conference](https://drive.google.com/file/d/12F5-P4dct3hl-_B_vAe0MAUBt1dEbzD7/view?usp=sharing)
-- [SCU School of Engineering Research Showcase](https://docs.google.com/presentation/d/15wbhp1hyqlNEOpRb6__YwI2Yva6Opd4get-9A5VJ10k/edit?usp=sharing)
-- [Hackworth Applied Ethics Research Grant](https://drive.google.com/file/d/1C5jopMzgl9t2hgAJOYhTnA18xQ7LQbZU/view?usp=sharing) (Submission)
-- [BayLearn Machine Learning Symposium](https://drive.google.com/file/d/1sKTumPeglMpADQQpm-wT4cGTqHteR7Kh/view?usp=sharing) (Submission)
+- [IEEE Wireless Communications & Networking Conference](https://drive.google.com/file/d/12F5-P4dct3hl-_B_vAe0MAUBt1dEbzD7/view?usp=sharing) (Accepted)
+- [SCU School of Engineering Research Showcase](https://docs.google.com/presentation/d/15wbhp1hyqlNEOpRb6__YwI2Yva6Opd4get-9A5VJ10k/edit?usp=sharing) (Accepted)
+- [Hackworth Applied Ethics Research Grant](https://drive.google.com/file/d/1C5jopMzgl9t2hgAJOYhTnA18xQ7LQbZU/view?usp=sharing)
+- [BayLearn Machine Learning Symposium](https://drive.google.com/file/d/1sKTumPeglMpADQQpm-wT4cGTqHteR7Kh/view?usp=sharing)
 
 </details>
 
@@ -72,7 +68,6 @@ Click on the arrows to select and expand each project for more details!
 ## Pinch Antenna Assisted NOMA
 
 - **Summary**: Enhanced NOMA using strategically placed pinch antennas to amplify user channels based on proximity. Potential for scalable user grouping and improved sum rates in future 6G networks. Built off of [Semantic Q Learning NOMA](#semantic-q-learning-noma).
-- **Status**: In Progress
 - **Latest Viable Product**: [Pinch Antenna Slides](https://docs.google.com/presentation/d/1h_JqKWFYyMGhYatl0e5yzvLRsz_A_gAQQxfmxc9z1ms/edit?usp=sharing)
 - **Folder**: [pinch-antenna](./pinch-antenna/)
 
@@ -80,9 +75,10 @@ Click on the arrows to select and expand each project for more details!
     <summary>Submissions</summary>
     
 **Below are the submissions (conferences, symposiums, grants, awards, etc.) derived from this work:**
-<!-- - [Pinch Antenna Paper]() -->
-<!-- - [Kuehler Undergraduate Research Award]() -->
-
+- IEEE Global Communications Conference (In Progress)
+- Kuehler Undergraduate Research Award (Pending)
+- Helene Lafrance Library Undergraduate Research Award (Pending)
+- Undergraduate Research Scholar Program using HPC (Pending)
 </details>
 
 <details>
@@ -101,7 +97,7 @@ Click on the arrows to select and expand each project for more details!
 - [circular](./pinch-antenna/circular.m): Circular, Joint Power, Pinch Antenna, Semantic, Q-Learning, NOMA.
 - [linear](./pinch-antenna/linear.m): Linear, Joint Power, Pinch Antenna, Semantic, Q-Learning, NOMA.
 - [multiple](./pinch-antenna/multiple.m): Multiple, Joint Power, Pinch Antenna, Semantic, Q-Learning, NOMA.
-
+- Other simulations in this work are based off the [sionna](https://developer.nvidia.com/sionna) framework.
 </details>
 
 
@@ -120,7 +116,6 @@ Click on the arrows to select and expand each project for more details!
 ## Semantic Greedy NOMA
 
 - **Summary**: Greedy algorithm & simple semantic model for NOMA that outperforms existing baselines in network utility. Strong foundation later extended with reinforcement learning in [Semantic Q Learning NOMA](#semantic-q-learning-noma).
-- **Status**: Completed
 - **Final Product**: [Semantic Utility Aware User Grouping for 6G NOMA Networks](https://drive.google.com/file/d/1bnmEY68AvoT-BOUoi62nJNvAtt0XLwHg/view?usp=sharing)
 - **Folder**: [SG-NOMA](./SG-NOMA/)
 
