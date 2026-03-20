@@ -2,7 +2,7 @@
 
 This repo is archived and no longer updated to reflect my latest work.
 
-Efficient user clustering in NOMA (Non Orthogonal Multiple Access) 6G Networks.
+[Website linked here](https://derekchui.com/research/). Efficient user clustering in NOMA (Non Orthogonal Multiple Access) 6G Networks.
 
 Click on the arrows to select and expand each project for more details!
 
